@@ -16,7 +16,7 @@ public:
 	~MapNode(){}
 	
 	///returns true when connection is open & boook selected connection
-	bool bookNode(uint8_t way)
+	bool lockNode(uint8_t way)
 	{
 		uint8_t propervalue = way % 8;
 		bool temp = !connections[propervalue];
@@ -27,8 +27,19 @@ public:
 		return temp;
 	}
 
+	void lockNodes(std::bitset<8> &way)
+	{
+		for (uint8_t i = 0; i<7; i++)
+		{
+			if (way[i])
+			{
+				connections[i] = true;
+			}
+		}
+	}
+
 	///returns true when conenction closed & make conenction open 
-	bool unbookNode(uint8_t way)
+	bool unlockNode(uint8_t way)
 	{
 		uint8_t propervalue = way % 8;
 		bool temp = connections[propervalue];
@@ -41,14 +52,14 @@ public:
 
 	bool isNodeFull()
 	{
-		bool temp = true;
 		for (uint8_t  i=0;i<7;i++)
 		{
 			if (!connections[i])
 			{
-				
+				return false;
 			}
 		}
+		return true;
 	}
 };
 
