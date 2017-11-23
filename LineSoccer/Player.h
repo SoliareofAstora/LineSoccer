@@ -1,17 +1,18 @@
 #pragma once
 #include "stack.h"
 #include <cstdint>
+#include "MapNode.h"
 
-template<typename T>
+
 class Player
 {
-
+	
 public:
 	Player() {};
 	~Player() {};
-	stack<uint8_t> TakeMovement()
+	template<typename T>
+	stack<int> GetMovement(T *player)
 	{
-		stack<uint8_t> movement;
-		return movement;
+		return player->GetMovement();
 	}
 };

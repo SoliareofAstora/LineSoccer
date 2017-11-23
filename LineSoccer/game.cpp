@@ -1,6 +1,8 @@
 #include "Game.h"
 #include <SFML/Graphics.hpp>
 #include "Debug.cpp"
+#include "RandomAgent.h"
+#include "Player.h"
 
 Game::Game()
 {
@@ -17,12 +19,16 @@ Game::~Game()
 
 	outln("Finished!");
 	outln("\nGood bye!\n");
-	system("PAUSE");
+	//system("PAUSE");
 }
 
 void Game::Start()
 {
 	outln("Game Inicjalization...");
+
+	RandomAgent agent1;
+	Player player;
+	stack<int> temp = player.GetMovement(&agent1);
 
 	window = new sf::RenderWindow(sf::VideoMode(400, 400), "Line Coccer by Piotr Kucharski");
 	outtab("Window");
@@ -32,14 +38,17 @@ void Game::Start()
 void Game::Play() const
 {
 	outln("Playing...");
+
 	while (window->isOpen())
 	{
+		
 		sf::CircleShape shape(100.f);
 		shape.setFillColor(sf::Color::Green);
 		sf::Event event;
 		while (window->pollEvent(event))
 		{
-			if (event.type == sf::Event::Closed)
+			if (event.type == sf::Event::Closed||
+				event.type == sf::Event::KeyPressed)
 				window->close();
 		}
 

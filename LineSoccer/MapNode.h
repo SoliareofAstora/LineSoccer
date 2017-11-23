@@ -27,6 +27,7 @@ public:
 		return temp;
 	}
 
+	///lock multiple nodes based on bitset<8> vector
 	void lockNodes(std::bitset<8> &way)
 	{
 		for (uint8_t i = 0; i<7; i++)
@@ -50,6 +51,7 @@ public:
 		return temp;
 	}
 
+	///returns true when all 8 nodes are locked
 	bool isNodeFull()
 	{
 		for (uint8_t  i=0;i<7;i++)

@@ -2,6 +2,7 @@
 #include <cstdint>
 
 template class stack<uint8_t>;
+template class stack<int>;
 
 template <typename T>
 stack<T>::stack()
@@ -16,7 +17,10 @@ stack<T>::~stack()
 {
 	while (!empty())
 	{
-		pop();
+		length--;
+		node* tempNode = last->prev;
+		last->prev = tempNode->prev;
+		delete tempNode;
 	}
 	delete last;
 }
