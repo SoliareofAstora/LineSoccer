@@ -19,7 +19,7 @@ Game::~Game()
 
 	outln("Finished!");
 	outln("\nGood bye!\n");
-	//system("PAUSE");
+	system("PAUSE");
 }
 
 void Game::Start()
@@ -27,10 +27,13 @@ void Game::Start()
 	outln("Game Inicjalization...");
 
 	RandomAgent agent1;
-	Player player;
-	stack<int> temp = player.GetMovement(&agent1);
+	LinkedList *linked = agent1.GetMovement();
+	for (int i = 0; i < 10; i++) {
 
-	window = new sf::RenderWindow(sf::VideoMode(400, 400), "Line Coccer by Piotr Kucharski");
+		//	std::cerr << std::to_string(linked->pop()) << " ";
+	}
+	delete linked;
+	window = new sf::RenderWindow(sf::VideoMode(400, 400), "Line Coccer Battlefield by Piotr Kucharski");
 	outtab("Window");
 	outln("Game Inicjalization Finished!");
 }

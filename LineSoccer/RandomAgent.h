@@ -1,14 +1,23 @@
 #pragma once
 #include <cstdint>
-#include "stack.h"
 #include <cstdlib>
+#include "LinkedList.h"
+#include <iostream>
+#include <string>
 
 
 class RandomAgent
 {
-	stack<int> movement;
 public:
-	stack<int> GetMovement();
+	LinkedList* GetMovement()
+	{
+		LinkedList* ewn= new LinkedList;
+		for (int i = 0; i < 10; i++) {
+
+			ewn->push(i);
+		}
+		return ewn;
+	}
 
 	RandomAgent();
 	~RandomAgent();
