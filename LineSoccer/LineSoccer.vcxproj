@@ -127,19 +127,25 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="game.cpp" />
+    <ClCompile Include="InputController.cpp" />
     <ClCompile Include="LinkedList.cpp" />
+    <ClCompile Include="Logic.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MapNode.cpp" />
     <ClCompile Include="RandomAgent.cpp" />
+    <ClCompile Include="visualization.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Debug.cpp" />
     <ClInclude Include="game.h" />
+    <ClInclude Include="InputController.h" />
     <ClInclude Include="LinkedList.h" />
+    <ClInclude Include="Logic.h" />
     <ClInclude Include="MapNode.h" />
     <ClInclude Include="Movement.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="RandomAgent.h" />
+    <ClInclude Include="visualization.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

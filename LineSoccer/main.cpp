@@ -2,7 +2,6 @@
 
 int main()
 {
-	Game::instance().Start();
-	Game::instance().Play();
+	GameRuler::instance().Play();
 	return 0;
 }

@@ -1,17 +1,23 @@
 #pragma once
 #include <SFML/Graphics/RenderWindow.hpp>
+#include "visualization.h"
+#include "InputController.h"
+#include "Logic.h"
 
-class Game
+class GameRuler
 {
-	Game();
-
+	GameRuler();
+	Visualization *visualization;
+	InputController *inputController;
+	Logic *logic;
+	sf::RenderWindow* window;
 
 public:
-	sf::RenderWindow* window;
-	static Game &instance(){ static Game game; return game; };
+	
+	static GameRuler &instance(){ static GameRuler game; return game; };
 
-	~Game();
+	~GameRuler();
 	void Start();
-	void Play() const;
+	void Play();
 };
 

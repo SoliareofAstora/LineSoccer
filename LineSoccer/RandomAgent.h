@@ -9,6 +9,7 @@
 class RandomAgent
 {
 public:
+	///zwraca ci¹g 10 cyfr
 	LinkedList* GetMovement()
 	{
 		LinkedList* ewn= new LinkedList;

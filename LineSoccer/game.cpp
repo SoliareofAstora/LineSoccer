@@ -3,61 +3,56 @@
 #include "Debug.cpp"
 #include "RandomAgent.h"
 #include "Player.h"
+#include "Visualization.h"
 
-Game::Game()
+GameRuler::GameRuler()
 {
-	out("Game Constructor...");
-	window = new sf::RenderWindow;
+	out("GameRuler Constructor...");
+
 	outln("Finished!");
 }
 
 
-Game::~Game()
+GameRuler::~GameRuler()
 {
-	out("Game Destructor...");
+	out("GameRuler Destructor...");
 	delete window;
+	delete visualization;
+	delete inputController;
+	delete logic;
 
 	outln("Finished!");
 	outln("\nGood bye!\n");
 	system("PAUSE");
 }
 
-void Game::Start()
+void GameRuler::Start()
 {
-	outln("Game Inicjalization...");
+	outln("GameRuler Inicjalization...");
+	window = new sf::RenderWindow(sf::VideoMode(400, 400), "Line Coccer Battlefield by Piotr Kucharski");
+	visualization = new Visualization;
+	inputController = new InputController;
+	logic = new Logic;
+
 
 	RandomAgent agent1;
 	LinkedList *linked = agent1.GetMovement();
-	for (int i = 0; i < 10; i++) {
 
-		//	std::cerr << std::to_string(linked->pop()) << " ";
-	}
 	delete linked;
-	window = new sf::RenderWindow(sf::VideoMode(400, 400), "Line Coccer Battlefield by Piotr Kucharski");
 	outtab("Window");
-	outln("Game Inicjalization Finished!");
+	outln("GameRuler Inicjalization Finished!");
 }
 
-void Game::Play() const
+void GameRuler::Play() 
 {
-	outln("Playing...");
+	Start();
 
+	outln("Playing...");
 	while (window->isOpen())
 	{
-		
-		sf::CircleShape shape(100.f);
-		shape.setFillColor(sf::Color::Green);
-		sf::Event event;
-		while (window->pollEvent(event))
-		{
-			if (event.type == sf::Event::Closed||
-				event.type == sf::Event::KeyPressed)
-				window->close();
-		}
-
-		window->clear();
-		window->draw(shape);
-		window->display();
+		inputController->update(window);
+		logic->update();
+		visualization->update(window);
 	}
 	outln("Playing Finished!");
 }
