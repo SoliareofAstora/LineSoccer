@@ -1,17 +1,9 @@
-#include "Game.h"
+#include "GameRuler.h"
 #include <SFML/Graphics.hpp>
 #include "Debug.cpp"
 #include "RandomAgent.h"
 #include "Player.h"
 #include "Visualization.h"
-
-GameRuler::GameRuler()
-{
-	out("GameRuler Constructor...");
-
-	outln("Finished!");
-}
-
 
 GameRuler::~GameRuler()
 {

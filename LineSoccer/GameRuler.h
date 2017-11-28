@@ -6,7 +6,7 @@
 
 class GameRuler
 {
-	GameRuler();
+	GameRuler(){}
 	Visualization *visualization;
 	InputController *inputController;
 	Logic *logic;

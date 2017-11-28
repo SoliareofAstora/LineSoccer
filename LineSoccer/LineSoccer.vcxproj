@@ -126,7 +126,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="game.cpp" />
+    <ClCompile Include="GameRuler.cpp" />
     <ClCompile Include="InputController.cpp" />
     <ClCompile Include="LinkedList.cpp" />
     <ClCompile Include="Logic.cpp" />
@@ -137,7 +137,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Debug.cpp" />
-    <ClInclude Include="game.h" />
+    <ClInclude Include="GameRuler.h" />
     <ClInclude Include="InputController.h" />
     <ClInclude Include="LinkedList.h" />
     <ClInclude Include="Logic.h" />

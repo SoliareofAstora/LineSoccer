@@ -5,71 +5,85 @@
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
-    </Filter>
     <Filter Include="Resource Files">
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Source Files\Utils">
+      <UniqueIdentifier>{7946c10c-e322-4071-9d6c-105ece299aab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GameComponents">
+      <UniqueIdentifier>{967af349-c337-4bd5-be38-5a32d897cbe5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Agents">
+      <UniqueIdentifier>{a89aef1f-2304-4969-8bd3-e732d68ae2b1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GameComponents\Input">
+      <UniqueIdentifier>{78e5186d-0d5b-4ec6-a5b2-1c981e699f98}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GameComponents\Visualization">
+      <UniqueIdentifier>{5a651499-1ba0-4590-bcf7-b541fc4bec74}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GameComponents\Logic">
+      <UniqueIdentifier>{a04f107c-8eef-48d7-bd87-048789920596}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="game.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="MapNode.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="LinkedList.cpp">
+      <Filter>Source Files\Utils</Filter>
     </ClCompile>
     <ClCompile Include="RandomAgent.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="LinkedList.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="visualization.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Logic.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Agents</Filter>
     </ClCompile>
     <ClCompile Include="InputController.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\GameComponents\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="visualization.cpp">
+      <Filter>Source Files\GameComponents\Visualization</Filter>
+    </ClCompile>
+    <ClCompile Include="MapNode.cpp">
+      <Filter>Source Files\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="Logic.cpp">
+      <Filter>Source Files\GameComponents\Logic</Filter>
+    </ClCompile>
+    <ClCompile Include="GameRuler.cpp">
+      <Filter>Source Files\GameComponents</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="game.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MapNode.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Debug.cpp">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Player.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Movement.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="RandomAgent.h">
-      <Filter>Header Files</Filter>
+      <Filter>Source Files\Utils</Filter>
     </ClInclude>
     <ClInclude Include="LinkedList.h">
-      <Filter>Header Files</Filter>
+      <Filter>Source Files\Utils</Filter>
     </ClInclude>
-    <ClInclude Include="visualization.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Player.h">
+      <Filter>Source Files\Agents</Filter>
     </ClInclude>
-    <ClInclude Include="Logic.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="RandomAgent.h">
+      <Filter>Source Files\Agents</Filter>
+    </ClInclude>
+    <ClInclude Include="Movement.h">
+      <Filter>Source Files\Utils</Filter>
     </ClInclude>
     <ClInclude Include="InputController.h">
-      <Filter>Header Files</Filter>
+      <Filter>Source Files\GameComponents\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="visualization.h">
+      <Filter>Source Files\GameComponents\Visualization</Filter>
+    </ClInclude>
+    <ClInclude Include="MapNode.h">
+      <Filter>Source Files\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Logic.h">
+      <Filter>Source Files\GameComponents\Logic</Filter>
+    </ClInclude>
+    <ClInclude Include="GameRuler.h">
+      <Filter>Source Files\GameComponents</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
