@@ -29,9 +29,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp">
-      <Filter>code</Filter>
-    </ClCompile>
     <ClCompile Include="LinkedList.cpp">
       <Filter>code\Utils</Filter>
     </ClCompile>
@@ -52,6 +49,12 @@
     </ClCompile>
     <ClCompile Include="GameRuler.cpp">
       <Filter>code\GameComponents</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>code\Agents</Filter>
+    </ClCompile>
+    <ClCompile Include="FieldVisualization.cpp">
+      <Filter>code\GameComponents\Visualization</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -82,8 +85,11 @@
     <ClInclude Include="Logic.h">
       <Filter>code\GameComponents\Logic</Filter>
     </ClInclude>
+    <ClInclude Include="FieldVisualization.h">
+      <Filter>code\GameComponents\Visualization</Filter>
+    </ClInclude>
     <ClInclude Include="GameRuler.h">
-      <Filter>code\GameComponents</Filter>
+      <Filter>code\GameComponents\Visualization</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

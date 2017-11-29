@@ -1,11 +1,17 @@
 #pragma once
 #include <SFML/Graphics/RenderWindow.hpp>
-#include <iostream>
+
+#include "FieldVisualization.h"
 
 class Visualization
 {
-	Visualization() {}
+	Visualization() : window(nullptr), field(nullptr)
+	{
+	}
+
 	sf::RenderWindow* window;
+	FieldVisualization* field;
+
 public:
 	static Visualization &instance() { static Visualization visualization; return visualization; }
 	void update();
