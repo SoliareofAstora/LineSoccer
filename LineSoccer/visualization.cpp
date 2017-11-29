@@ -1,13 +1,14 @@
 #include "Visualization.h"
 #include <SFML/Graphics/CircleShape.hpp>
 
-
-void Visualization::Start()
+Visualization::~Visualization()
 {
-
+	std::cerr << "kasownik\n";
+	window->close();
+	delete window;
 }
 
-void Visualization::update(sf::RenderWindow *window)
+void Visualization::update()
 {
 	int step = 6;
 	sf::Vertex line[2];
@@ -56,12 +57,11 @@ void Visualization::update(sf::RenderWindow *window)
 
 }
 
-Visualization::Visualization()
+void Visualization::initialise()
 {
+	window = new sf::RenderWindow(sf::VideoMode(400, 400), "Line Coccer Battlefield by Piotr Kucharski");
+	for (int i = 0; i < 100; i++) {}
+
 }
 
 
-Visualization::~Visualization()
-{
-	
-}

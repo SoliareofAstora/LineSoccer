@@ -7,17 +7,18 @@
 class GameRuler
 {
 	GameRuler(){}
-	Visualization *visualization;
-	InputController *inputController;
-	Logic *logic;
-	sf::RenderWindow* window;
+	InputController inputController;
+	Logic logic;
+	
 
 public:
-	
+
+	bool playing = true;
 	static GameRuler &instance(){ static GameRuler game; return game; };
 
-	~GameRuler();
+	void StopPlaying() { playing = false; }
 	void Start();
 	void Play();
+	~GameRuler();
 };
 
