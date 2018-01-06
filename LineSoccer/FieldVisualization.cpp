@@ -16,12 +16,26 @@ FieldVisualization::FieldVisualization(sf::Vector2f position, sf::Vector2u sprit
 	createFieldBorder(logicSize);
 }
 
-
 void FieldVisualization::display(sf::RenderWindow* window)
 {
 	texture.update(image);
 	fieldSprite.setTexture(texture);
 	window->draw(fieldSprite);
+}
+
+void FieldVisualization::reset(sf::Vector2u *logicSize)
+{
+
+	sf::Vector2u spritePxSize = image.getSize();
+
+	spritePxSize.x /= logicSize->x;
+	spritePxSize.y /= logicSize->y;
+	spritePxSize.x -= logicSize->x % 2;
+	spritePxSize.y -= logicSize->y % 2;
+	step = std::min(spritePxSize.x, spritePxSize.y);
+
+	createNodeDots(logicSize);
+	createFieldBorder(logicSize);
 }
 
 void FieldVisualization::createNodeDots(sf::Vector2u *logicSize)

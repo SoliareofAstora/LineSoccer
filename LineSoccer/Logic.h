@@ -1,9 +1,14 @@
 #pragma once
+#include <SFML/System/Vector2.hpp>
+
 class Logic
 {
 public:
+	sf::Vector2u logicSize;
+	static Logic &instance() { static Logic logic; return logic; }
+
 	Logic();
-	void update() {};
+	static void update() {};
 	~Logic();
 };
 
