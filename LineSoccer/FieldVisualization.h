@@ -12,8 +12,7 @@ class FieldVisualization
 	int step;
 	void createNodeDots(sf::Vector2u *logicSize);
 	void createFieldBorder(sf::Vector2u *logicSize);
-	void createGates(sf::Vector2u *logicSize);
-	void drawPixel(int addrx, int addry);
+	void drawNode(int addrx, int addry);
 public:
 	FieldVisualization(sf::Vector2f position, sf::Vector2u pixelSize, sf::Vector2u* logicSize);
 	void display(sf::RenderWindow *window);

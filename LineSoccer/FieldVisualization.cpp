@@ -1,7 +1,5 @@
 #include "FieldVisualization.h"
 
-
-
 FieldVisualization::FieldVisualization(sf::Vector2f position, sf::Vector2u spritePxSize, sf::Vector2u *logicSize)
 {
 	fieldSprite.setPosition(position);
@@ -31,7 +29,7 @@ void FieldVisualization::createNodeDots(sf::Vector2u *logicSize)
 	for (unsigned int i = 1; i < logicSize->x - 1; i++)
 	{
 		for (unsigned int j = 0; j < logicSize->y; j++) {
-			drawPixel(i, j);
+			drawNode(i, j);
 		}
 	}
 	image.setPixel((logicSize->x / 2)*step, (logicSize->y / 2)*step, sf::Color::Red);
@@ -55,8 +53,8 @@ void FieldVisualization::createFieldBorder(sf::Vector2u *logicSize)
 	{
 		if (i > (logicSize->y / 2) - 1 && i < (logicSize->y / 2) + 2)
 		{
-			drawPixel(0, i);
-			drawPixel(logicSize->x - 1, i);
+			drawNode(0, i);
+			drawNode(logicSize->x - 1, i);
 			drawLine(0, i, 0, sf::Color::White);
 			drawLine(logicSize->x - 1, i, 0, sf::Color::White);
 		}
@@ -66,29 +64,35 @@ void FieldVisualization::createFieldBorder(sf::Vector2u *logicSize)
 			drawLine(logicSize->x - 2, i, 0, sf::Color::White);
 		}
 	}	
-	drawPixel(0, (logicSize->y / 2) - 1);
-	drawPixel(logicSize->x - 1, (logicSize->y / 2) - 1);
+	drawNode(0, (logicSize->y / 2) - 1);
+	drawNode(logicSize->x - 1, (logicSize->y / 2) - 1);
 	
 }
 
-void FieldVisualization::createGates(sf::Vector2u *logicSize)
-{
-	
-	for (unsigned int i = (logicSize->y / 2) - 1; i < (logicSize->y / 2) + 2; i++)
-	{
-		
-	}
-	
-}
-
-void FieldVisualization::drawPixel(int addrx, int addry)
+void FieldVisualization::drawNode(int addrx, int addry)
 {
 	image.setPixel(addrx*step,addry*step, sf::Color::White);
 }
 
-
 void FieldVisualization::drawLine(int addrx,int addry, uint8_t direction,sf::Color color)
 {
+	direction %= 8;
+	if (direction>3)
+	{
+		if (direction>4)
+		{
+			addrx--;
+		}
+		if(direction==7)
+		{
+			addry--;
+		}
+		if (direction<6)
+		{
+			addry++;
+		}
+		direction -= 4;
+	}
 	int x = addrx * step;
 	int y = addry * step;
 	int dx = 0;
