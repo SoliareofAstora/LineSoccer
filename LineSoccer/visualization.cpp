@@ -1,7 +1,7 @@
 #include "Visualization.h"
 #include "Logic.h"
 #include <SFML/Graphics/RectangleShape.hpp>
-#include <SFML/Graphics/Sprite.hpp>
+#include "FieldLogic.h"
 
 
 void Visualization::update()
@@ -18,7 +18,7 @@ void Visualization::draw()
 
 void Visualization::resetField()
 {
-	field->reset(&Logic::instance().logicSize);
+	field->reset(&FieldLogic::instance().Size);
 }
 
 void Visualization::initialise()
@@ -27,7 +27,7 @@ void Visualization::initialise()
 	field = new FieldVisualization(
 		sf::Vector2f (0,0), 
 		sf::Vector2u (1000,1000),
-		&Logic::instance().logicSize);
+		&FieldLogic::instance().Size);
 	draw();
 }
 

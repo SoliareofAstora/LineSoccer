@@ -3,6 +3,7 @@
 
 void GameRuler::Start()
 {
+	Logic::instance().initialise();
 	Visualization::instance().initialise();
 }
 
@@ -12,7 +13,7 @@ void GameRuler::Play()
 	while (playing)
 	{
 		inputController.update();
-		logic.update();
+
 		Visualization::instance().update();
 	}
 }

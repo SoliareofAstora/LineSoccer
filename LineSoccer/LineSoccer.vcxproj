@@ -126,6 +126,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="FieldLogic.cpp" />
     <ClCompile Include="FieldVisualization.cpp" />
     <ClCompile Include="GameRuler.cpp" />
     <ClCompile Include="InputController.cpp" />
@@ -138,6 +139,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Debug.cpp" />
+    <ClInclude Include="FieldLogic.h" />
     <ClInclude Include="FieldVisualization.h" />
     <ClInclude Include="GameRuler.h" />
     <ClInclude Include="InputController.h" />

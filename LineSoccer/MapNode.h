@@ -9,7 +9,7 @@ class MapNode
 	 false - connection is open
 	 true  - connection is closed
 	 */
-	std::bitset<8> connections;
+	std::bitset<4> connections;
 
 public:
 	MapNode() { connections.reset(); }
@@ -39,7 +39,7 @@ public:
 		return temp;
 	}
 
-	///returns true when all 8 nodes are locked
+	///returns true when all 4 nodes are locked
 	bool isNodeFull()
 	{
 		for (uint8_t  i=0;i<7;i++)

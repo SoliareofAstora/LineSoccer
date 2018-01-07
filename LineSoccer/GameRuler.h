@@ -17,7 +17,7 @@ public:
 	static GameRuler &instance(){ static GameRuler game; return game; };
 
 	void StopPlaying() { playing = false; }
-	static void Start();
+	void Start();
 	void Play();
 	~GameRuler();
 };

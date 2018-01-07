@@ -2,7 +2,16 @@
 
 
 
-Logic::Logic()
+Logic::Logic(): fieldLogic(nullptr)
+{
+}
+
+void Logic::initialise()
+{
+	fieldLogic = new FieldLogic();
+}
+
+void Logic::update()
 {
 }
 
