@@ -1,6 +1,6 @@
 #include "FieldVisualization.h"
 
-FieldVisualization::FieldVisualization(sf::Vector2f pos, sf::Vector2u sprSizePx, sf::Vector2u* logicSize)
+FieldVisualization::FieldVisualization(sf::Vector2f pos, sf::Vector2i sprSizePx, sf::Vector2i* logicSize)
 {
 	fieldSprite.setPosition(pos);
 	image.create(sprSizePx.x, sprSizePx.y, sf::Color::Black);
@@ -16,7 +16,7 @@ void FieldVisualization::display(sf::RenderWindow* window)
 	window->draw(fieldSprite);
 }
 
-void FieldVisualization::reset(sf::Vector2u* logicSize)
+void FieldVisualization::reset(sf::Vector2i* logicSize)
 {
 	auto spritePxSize = image.getSize();
 
@@ -30,7 +30,7 @@ void FieldVisualization::reset(sf::Vector2u* logicSize)
 	createFieldBorder(logicSize);
 }
 
-void FieldVisualization::createNodeDots(sf::Vector2u* logicSize)
+void FieldVisualization::createNodeDots(sf::Vector2i* logicSize)
 {
 	for (unsigned int i = 1; i < logicSize->x - 1; i++)
 	{
@@ -42,7 +42,7 @@ void FieldVisualization::createNodeDots(sf::Vector2u* logicSize)
 	image.setPixel(logicSize->x / 2 * step, logicSize->y / 2 * step, sf::Color::Red);
 }
 
-void FieldVisualization::createFieldBorder(sf::Vector2u* logicSize)
+void FieldVisualization::createFieldBorder(sf::Vector2i* logicSize)
 {
 	for (unsigned int i = 0; i < logicSize->x - 1; i++)
 	{

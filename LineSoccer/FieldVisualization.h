@@ -10,13 +10,13 @@ class FieldVisualization
 	sf::Texture texture;
 	sf::Sprite fieldSprite;
 	int step;
-	void createNodeDots(sf::Vector2u *logicSize);
-	void createFieldBorder(sf::Vector2u *logicSize);
+	void createNodeDots(sf::Vector2i *logicSize);
+	void createFieldBorder(sf::Vector2i *logicSize);
 	void drawNode(int addrx, int addry);
 public:
-	FieldVisualization(sf::Vector2f position, sf::Vector2u pixelSize, sf::Vector2u* logicSize);
+	FieldVisualization(sf::Vector2f position, sf::Vector2i pixelSize, sf::Vector2i* logicSize);
 	void display(sf::RenderWindow *window);
-	void reset(sf::Vector2u *logicSize);
+	void reset(sf::Vector2i *logicSize);
 	void drawLine(int addrx, int addry, uint8_t direction, sf::Color color);
 	~FieldVisualization();
 };

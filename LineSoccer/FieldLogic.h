@@ -6,11 +6,10 @@ class FieldLogic
 {
 	MapNode **map;
 public:
-	sf::Vector2u Size;
-	static FieldLogic &instance() { static FieldLogic fieldLogic; return fieldLogic; }
+	sf::Vector2i Size;
 
 	FieldLogic();
-	FieldLogic(sf::Vector2u size);
+	FieldLogic(sf::Vector2i size);
 
 	void reset();
 	~FieldLogic();

@@ -6,14 +6,10 @@ FieldLogic::FieldLogic(): map(nullptr)
 {
 }
 
-FieldLogic::FieldLogic(sf::Vector2u size)
+FieldLogic::FieldLogic(sf::Vector2i size)
 {
 	Size = size;
-	map = new MapNode*[size.x];
-	for (int i = 0; i < size.x;i++)
-	{
-		map[i] = new MapNode[size.y];
-	}
+	reset();
 }
 
 void FieldLogic::reset()

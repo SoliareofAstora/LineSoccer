@@ -8,7 +8,7 @@ Logic::Logic(): fieldLogic(nullptr)
 
 void Logic::initialise()
 {
-	fieldLogic = new FieldLogic();
+	fieldLogic = new FieldLogic(sf::Vector2i(11,11));
 }
 
 void Logic::update()

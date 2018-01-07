@@ -11,6 +11,9 @@ public:
 	Logic();
 	void initialise();
 	void update();
+	sf::Vector2i* fieldSize() {
+		return &fieldLogic->Size;
+	}
 	~Logic();
 };
 
