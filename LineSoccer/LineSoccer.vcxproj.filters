@@ -27,6 +27,9 @@
     <Filter Include="code\GameComponents\Utils">
       <UniqueIdentifier>{7946c10c-e322-4071-9d6c-105ece299aab}</UniqueIdentifier>
     </Filter>
+    <Filter Include="code\GameComponents\Logic\Field">
+      <UniqueIdentifier>{4fba3c7b-5a8f-46d7-85ab-6ef0d05e2cb7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="LinkedList.cpp">
@@ -41,9 +44,6 @@
     <ClCompile Include="visualization.cpp">
       <Filter>code\GameComponents\Visualization</Filter>
     </ClCompile>
-    <ClCompile Include="MapNode.cpp">
-      <Filter>code\GameComponents\Utils</Filter>
-    </ClCompile>
     <ClCompile Include="Logic.cpp">
       <Filter>code\GameComponents\Logic</Filter>
     </ClCompile>
@@ -53,11 +53,14 @@
     <ClCompile Include="FieldVisualization.cpp">
       <Filter>code\GameComponents\Visualization</Filter>
     </ClCompile>
-    <ClCompile Include="FieldLogic.cpp">
-      <Filter>code\GameComponents\Logic</Filter>
-    </ClCompile>
     <ClCompile Include="main.cpp">
       <Filter>code\GameComponents</Filter>
+    </ClCompile>
+    <ClCompile Include="FieldLogic.cpp">
+      <Filter>code\GameComponents\Logic\Field</Filter>
+    </ClCompile>
+    <ClCompile Include="MapNode.cpp">
+      <Filter>code\GameComponents\Logic\Field</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -82,9 +85,6 @@
     <ClInclude Include="visualization.h">
       <Filter>code\GameComponents\Visualization</Filter>
     </ClInclude>
-    <ClInclude Include="MapNode.h">
-      <Filter>code\GameComponents\Utils</Filter>
-    </ClInclude>
     <ClInclude Include="Logic.h">
       <Filter>code\GameComponents\Logic</Filter>
     </ClInclude>
@@ -95,7 +95,10 @@
       <Filter>code\GameComponents</Filter>
     </ClInclude>
     <ClInclude Include="FieldLogic.h">
-      <Filter>code\GameComponents\Logic</Filter>
+      <Filter>code\GameComponents\Logic\Field</Filter>
+    </ClInclude>
+    <ClInclude Include="MapNode.h">
+      <Filter>code\GameComponents\Logic\Field</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

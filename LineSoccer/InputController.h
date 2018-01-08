@@ -3,9 +3,12 @@
 
 class InputController
 {
+	InputController();
 public:
 	void update();
-	InputController();
+	static InputController &instance() { static InputController inputController; return inputController; };
+	void initialise(){}
+	
 	~InputController();
 };
 

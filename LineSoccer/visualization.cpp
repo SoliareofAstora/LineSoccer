@@ -18,7 +18,7 @@ void Visualization::draw()
 
 void Visualization::resetField()
 {
-	field->reset(Logic::instance().fieldSize());
+	field->resizeLogic(Logic::instance().fieldSize());
 }
 
 void Visualization::initialise()

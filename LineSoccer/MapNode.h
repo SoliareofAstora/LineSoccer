@@ -15,6 +15,23 @@ public:
 	MapNode() { connections.reset(); }
 	~MapNode(){}
 	
+	void initialise(uint8_t setup)
+	{
+		switch (setup)
+		{
+
+		case 0:
+			//Lock all nodes
+			connections[0] = true;
+			connections[1] = true;
+			connections[2] = true;
+			connections[3] = true;
+			break;
+
+
+		default:;
+		}
+	}
 	///returns true when connection is open & boook selected connection
 	bool lockNode(uint8_t way)
 	{

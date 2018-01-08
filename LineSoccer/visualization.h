@@ -10,10 +10,11 @@ class Visualization
 	}
 
 	sf::RenderWindow* window;
-	FieldVisualization* field;
+	
 public:
 	static Visualization &instance() { static Visualization visualization; return visualization; }
-		
+	FieldVisualization* field;
+
 	void initialise();
 	void update();
 	void draw();

@@ -16,7 +16,7 @@ class FieldVisualization
 public:
 	FieldVisualization(sf::Vector2f position, sf::Vector2i pixelSize, sf::Vector2i* logicSize);
 	void display(sf::RenderWindow *window);
-	void reset(sf::Vector2i *logicSize);
+	void resizeLogic(sf::Vector2i *logicSize);
 	void drawLine(int addrx, int addry, uint8_t direction, sf::Color color);
 	~FieldVisualization();
 };

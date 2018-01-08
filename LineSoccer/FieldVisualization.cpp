@@ -5,8 +5,7 @@ FieldVisualization::FieldVisualization(sf::Vector2f pos, sf::Vector2i sprSizePx,
 	fieldSprite.setPosition(pos);
 	image.create(sprSizePx.x, sprSizePx.y, sf::Color::Black);
 	texture.create(sprSizePx.x, sprSizePx.y);
-
-	reset(logicSize);
+	resizeLogic(logicSize);
 }
 
 void FieldVisualization::display(sf::RenderWindow* window)
@@ -16,10 +15,10 @@ void FieldVisualization::display(sf::RenderWindow* window)
 	window->draw(fieldSprite);
 }
 
-void FieldVisualization::reset(sf::Vector2i* logicSize)
+void FieldVisualization::resizeLogic(sf::Vector2i* logicSize)
 {
 	auto spritePxSize = image.getSize();
-
+	image.create(spritePxSize.x, spritePxSize.y, sf::Color::Black);
 	spritePxSize.x /= logicSize->x;
 	spritePxSize.y /= logicSize->y;
 	spritePxSize.x -= logicSize->x % 2;
@@ -32,7 +31,7 @@ void FieldVisualization::reset(sf::Vector2i* logicSize)
 
 void FieldVisualization::createNodeDots(sf::Vector2i* logicSize)
 {
-	for (unsigned int i = 1; i < logicSize->x - 1; i++)
+	for (unsigned int i = 1; i < logicSize->x ; i++)
 	{
 		for (unsigned int j = 0; j < logicSize->y; j++)
 		{
@@ -44,9 +43,9 @@ void FieldVisualization::createNodeDots(sf::Vector2i* logicSize)
 
 void FieldVisualization::createFieldBorder(sf::Vector2i* logicSize)
 {
-	for (unsigned int i = 0; i < logicSize->x - 1; i++)
+	for (unsigned int i = 0; i < logicSize->x; i++)
 	{
-		if (i == 0 || i == logicSize->x - 2)
+		if (i == 0 || i == logicSize->x - 1)
 		{
 			drawLine(i, (logicSize->y / 2) - 1, 2, sf::Color::White);
 			drawLine(i, (logicSize->y / 2) + 1, 2, sf::Color::White);
@@ -62,14 +61,14 @@ void FieldVisualization::createFieldBorder(sf::Vector2i* logicSize)
 		if (i > (logicSize->y / 2) - 1 && i < (logicSize->y / 2) + 2)
 		{
 			drawNode(0, i);
-			drawNode(logicSize->x - 1, i);
+			drawNode(logicSize->x, i);
 			drawLine(0, i, 0, sf::Color::White);
-			drawLine(logicSize->x - 1, i, 0, sf::Color::White);
+			drawLine(logicSize->x, i, 0, sf::Color::White);
 		}
 		else
 		{
 			drawLine(1, i, 0, sf::Color::White);
-			drawLine(logicSize->x - 2, i, 0, sf::Color::White);
+			drawLine(logicSize->x - 1, i, 0, sf::Color::White);
 		}
 	}
 	drawNode(0, (logicSize->y / 2) - 1);

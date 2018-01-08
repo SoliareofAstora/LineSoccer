@@ -4,10 +4,10 @@
 
 class Logic
 {
-	FieldLogic *fieldLogic;
+	
 public:
 	static Logic &instance() { static Logic logic; return logic; }
-
+	FieldLogic *fieldLogic;
 	Logic();
 	void initialise();
 	void update();
