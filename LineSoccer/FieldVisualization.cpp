@@ -1,11 +1,21 @@
 #include "FieldVisualization.h"
+#include "Logic.h"
 
-FieldVisualization::FieldVisualization(sf::Vector2f pos, sf::Vector2i sprSizePx, sf::Vector2i* logicSize)
+FieldVisualization::FieldVisualization(sf::Vector2f pos, sf::Vector2i sprSizePx)
 {
 	fieldSprite.setPosition(pos);
 	image.create(sprSizePx.x, sprSizePx.y, sf::Color::Black);
 	texture.create(sprSizePx.x, sprSizePx.y);
-	resizeLogic(logicSize);
+	updateLogicSize();
+}
+
+void FieldVisualization::reset()
+{
+	auto spritePxSize = image.getSize();
+	auto logicSize = Logic::instance().fieldSize();
+	image.create(spritePxSize.x, spritePxSize.y, sf::Color::Black);
+	createNodeDots(logicSize);
+	createFieldBorder(logicSize);
 }
 
 void FieldVisualization::display(sf::RenderWindow* window)
@@ -15,18 +25,17 @@ void FieldVisualization::display(sf::RenderWindow* window)
 	window->draw(fieldSprite);
 }
 
-void FieldVisualization::resizeLogic(sf::Vector2i* logicSize)
+void FieldVisualization::updateLogicSize()
 {
 	auto spritePxSize = image.getSize();
-	image.create(spritePxSize.x, spritePxSize.y, sf::Color::Black);
+	auto logicSize = Logic::instance().fieldSize();
+	
 	spritePxSize.x /= logicSize->x;
 	spritePxSize.y /= logicSize->y;
 	spritePxSize.x -= logicSize->x % 2;
 	spritePxSize.y -= logicSize->y % 2;
 	step = std::min(spritePxSize.x, spritePxSize.y);
-
-	createNodeDots(logicSize);
-	createFieldBorder(logicSize);
+	reset();
 }
 
 void FieldVisualization::createNodeDots(sf::Vector2i* logicSize)

@@ -5,6 +5,10 @@
 class FieldLogic
 {
 	MapNode **map;
+
+	void deleteMap();
+	void initialiseMap();
+	void prepareNodes();
 public:
 	sf::Vector2i Size;
 

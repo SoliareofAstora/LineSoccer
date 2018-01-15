@@ -14,9 +14,10 @@ class FieldVisualization
 	void createFieldBorder(sf::Vector2i *logicSize);
 	void drawNode(int addrx, int addry);
 public:
-	FieldVisualization(sf::Vector2f position, sf::Vector2i pixelSize, sf::Vector2i* logicSize);
+	FieldVisualization(sf::Vector2f position, sf::Vector2i pixelSize);
+	void reset();
 	void display(sf::RenderWindow *window);
-	void resizeLogic(sf::Vector2i *logicSize);
+	void updateLogicSize();
 	void drawLine(int addrx, int addry, uint8_t direction, sf::Color color);
 	~FieldVisualization();
 };

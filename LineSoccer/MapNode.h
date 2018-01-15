@@ -15,21 +15,34 @@ public:
 	MapNode() { connections.reset(); }
 	~MapNode(){}
 	
-	void initialise(uint8_t setup)
+	void lock(int* setupVector)
 	{
-		switch (setup)
+		int size = sizeof setupVector;
+		if (size>0)
 		{
-
-		case 0:
-			//Lock all nodes
-			connections[0] = true;
-			connections[1] = true;
-			connections[2] = true;
-			connections[3] = true;
-			break;
-
-
-		default:;
+			for (int i = 0; i < size; i++)
+			{
+				if (setupVector[i]==0)
+				{
+					return;
+				}
+				connections[setupVector[i]-1] = true;
+			}
+		}
+	}
+	void unlock(int* setupVector)
+	{
+		int size = sizeof setupVector;
+		if (size>0)
+		{
+			for (int i = 0; i < size; i++)
+			{
+				if (setupVector[i] == 0)
+				{
+					return;
+				}
+				connections[setupVector[i] - 1] = false;
+			}
 		}
 	}
 	///returns true when connection is open & boook selected connection

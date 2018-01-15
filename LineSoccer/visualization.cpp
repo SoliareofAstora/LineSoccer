@@ -1,7 +1,6 @@
 #include "Visualization.h"
-#include "Logic.h"
+
 #include <SFML/Graphics/RectangleShape.hpp>
-#include "FieldLogic.h"
 
 
 void Visualization::update()
@@ -18,7 +17,7 @@ void Visualization::draw()
 
 void Visualization::resetField()
 {
-	field->resizeLogic(Logic::instance().fieldSize());
+	field->updateLogicSize();
 }
 
 void Visualization::initialise()
@@ -26,8 +25,7 @@ void Visualization::initialise()
 	window = new sf::RenderWindow(sf::VideoMode(1001, 1001), "Line Soccer");
 	field = new FieldVisualization(
 		sf::Vector2f (0,0), 
-		sf::Vector2i (1000,1000),
-		Logic::instance().fieldSize());
+		sf::Vector2i (1000,1000));
 	draw();
 }
 
