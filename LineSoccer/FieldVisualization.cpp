@@ -32,17 +32,17 @@ void FieldVisualization::updateLogicSize()
 	
 	spritePxSize.x /= logicSize->x;
 	spritePxSize.y /= logicSize->y;
-	spritePxSize.x -= logicSize->x % 2;
-	spritePxSize.y -= logicSize->y % 2;
+	spritePxSize.x -=logicSize->x % 2;
+	spritePxSize.y -=logicSize->y % 2;
 	step = std::min(spritePxSize.x, spritePxSize.y);
 	reset();
 }
 
 void FieldVisualization::createNodeDots(sf::Vector2i* logicSize)
 {
-	for (unsigned int i = 1; i < logicSize->x ; i++)
+	for (int i = 1; i < logicSize->x ; i++)
 	{
-		for (unsigned int j = 0; j < logicSize->y; j++)
+		for (int j = 0; j < logicSize->y; j++)
 		{
 			drawNode(i, j);
 		}
@@ -52,7 +52,7 @@ void FieldVisualization::createNodeDots(sf::Vector2i* logicSize)
 
 void FieldVisualization::createFieldBorder(sf::Vector2i* logicSize)
 {
-	for (unsigned int i = 0; i < logicSize->x; i++)
+	for (int i = 0; i < logicSize->x; i++)
 	{
 		if (i == 0 || i == logicSize->x - 1)
 		{
@@ -65,7 +65,8 @@ void FieldVisualization::createFieldBorder(sf::Vector2i* logicSize)
 			drawLine(i, logicSize->y - 1, 2, sf::Color::White);
 		}
 	}
-	for (unsigned int i = 1; i < logicSize->y; i++)
+
+	for (int i = 1; i < logicSize->y; i++)
 	{
 		if (i > (logicSize->y / 2) - 1 && i < (logicSize->y / 2) + 2)
 		{
@@ -80,8 +81,9 @@ void FieldVisualization::createFieldBorder(sf::Vector2i* logicSize)
 			drawLine(logicSize->x - 1, i, 0, sf::Color::White);
 		}
 	}
+
 	drawNode(0, (logicSize->y / 2) - 1);
-	drawNode(logicSize->x - 1, (logicSize->y / 2) - 1);
+	drawNode(logicSize->x, (logicSize->y / 2)-1);
 }
 
 void FieldVisualization::drawNode(int addrx, int addry)

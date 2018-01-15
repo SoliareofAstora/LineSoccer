@@ -18,6 +18,7 @@ void GameRuler::Play()
 		InputController::instance().update();
 
 		Visualization::instance().update();
+		Visualization::instance().draw();
 	}
 }
 

@@ -1,6 +1,4 @@
 #include "FieldLogic.h"
-#include <SFML/Graphics/Color.hpp>
-#include <ctime>
 #include "Visualization.h"
 
 void FieldLogic::deleteMap()
@@ -24,16 +22,16 @@ void FieldLogic::initialiseMap()
 	}
 }
 
-void FieldLogic::prepareNodes()
+void FieldLogic::refreshNodes()
 {
-	//TODO przerobiæ razem z klas¹ MapNode.h
+	//TODO do something with it!! Kick it to MapNode.h
 	int lockKey[8][4] = {
 		{1,2,3,4},
 		{1},
 		{1,2,3},
 		{3,4},
 		{2,3,4},
-		{1,4},
+		{4},
 		{1,3},
 		{1,2}
 	};
@@ -83,23 +81,7 @@ void FieldLogic::reset()
 {
 	deleteMap();
 	initialiseMap();
-	prepareNodes();
-
-
-	srand(time(NULL));
-	for (int i=0;i<Size.x;i++)
-	{
-		for (int j = 0; j<Size.y; j++)
-		{
-			for (uint8_t a=0;a<4;a++)
-			if (map[i][j].lockNode(a))
-			{
-				Visualization::instance().field->drawLine(i, j, a, sf::Color(rand() % 255, rand() % 255, rand() % 255));
-			}
-			Visualization::instance().draw();
-		}
-		
-	}
+	refreshNodes();
 }
 
 FieldLogic::~FieldLogic()

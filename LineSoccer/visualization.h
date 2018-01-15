@@ -4,6 +4,10 @@
 
 class Visualization
 {
+	sf::Clock clock;
+	const float FRAMES_PER_SECOND = 30;
+	float FrameRate = 1000.f / FRAMES_PER_SECOND;
+	float NextFrameTime = 0;
 	Visualization() : window(nullptr), field(nullptr)
 	{
 	}

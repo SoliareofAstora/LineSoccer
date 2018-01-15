@@ -8,7 +8,7 @@ class FieldLogic
 
 	void deleteMap();
 	void initialiseMap();
-	void prepareNodes();
+	void refreshNodes();
 public:
 	sf::Vector2i Size;
 

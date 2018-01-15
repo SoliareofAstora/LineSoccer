@@ -4,11 +4,12 @@
 
 Logic::Logic(): fieldLogic(nullptr)
 {
+
 }
 
 void Logic::initialise()
 {
-	fieldLogic = new FieldLogic(sf::Vector2i(50,50));
+	fieldLogic = new FieldLogic(sf::Vector2i(10,10));
 }
 
 void Logic::update()
