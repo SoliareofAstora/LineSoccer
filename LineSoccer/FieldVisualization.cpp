@@ -1,5 +1,6 @@
 #include "FieldVisualization.h"
 #include "GameLogic.h"
+#include "stack.h"
 
 FieldVisualization::FieldVisualization(sf::Vector2f pos, sf::Vector2i sprSizePx)
 {
@@ -52,17 +53,19 @@ void FieldVisualization::createNodeDots(sf::Vector2i* logicSize)
 
 void FieldVisualization::createFieldBorder(sf::Vector2i* logicSize)
 {
+	stack<Move> moves;
 	for (int i = 0; i < logicSize->x; i++)
 	{
 		if (i == 0 || i == logicSize->x - 1)
 		{
-			drawLine(i, (logicSize->y / 2) - 1, 2, sf::Color::White);
-			drawLine(i, (logicSize->y / 2) + 1, 2, sf::Color::White);
+			moves.push(Move(i, (logicSize->y / 2) - 1, 2));
+			moves.push(Move(i, (logicSize->y / 2) - 1, 2));
+			moves.push(Move(i, (logicSize->y / 2) + 1, 2));
 		}
 		else
 		{
-			drawLine(i, 0, 2, sf::Color::White);
-			drawLine(i, logicSize->y - 1, 2, sf::Color::White);
+			moves.push(Move(i, 0, 2));
+			moves.push(Move(i, logicSize->y - 1, 2));
 		}
 	}
 
@@ -72,18 +75,20 @@ void FieldVisualization::createFieldBorder(sf::Vector2i* logicSize)
 		{
 			drawNode(0, i);
 			drawNode(logicSize->x, i);
-			drawLine(0, i, 0, sf::Color::White);
-			drawLine(logicSize->x, i, 0, sf::Color::White);
+			moves.push(Move(0, i, 0));
+			moves.push(Move(logicSize->x, i, 0));
 		}
 		else
 		{
-			drawLine(1, i, 0, sf::Color::White);
-			drawLine(logicSize->x - 1, i, 0, sf::Color::White);
+			moves.push(Move(1, i, 0));
+			moves.push(Move(logicSize->x - 1, i, 0));
 		}
 	}
 
 	drawNode(0, (logicSize->y / 2) - 1);
 	drawNode(logicSize->x, (logicSize->y / 2)-1);
+
+	while (!moves.empty()) drawLine(moves.pop(), sf::Color::White);
 }
 
 void FieldVisualization::drawNode(int addrx, int addry)
@@ -91,23 +96,23 @@ void FieldVisualization::drawNode(int addrx, int addry)
 	image.setPixel(addrx * step, addry * step, sf::Color::White);
 }
 
-void FieldVisualization::drawLine(int addrx, int addry, uint8_t direction, sf::Color color)
+void FieldVisualization::drawLine(Move move, sf::Color color)
 {
-	int x = addrx * step;
-	int y = addry * step;
+	int x = move.addrx * step;
+	int y = move.addry * step;
 	int dx = 0;
 	int dy = 0;
 
-	if (direction > 0)
+	if (move.direction > 0)
 	{
 		dx = 1;
 	}
 
-	if (direction < 2)
+	if (move.direction < 2)
 	{
 		dy = -1;
 	}
-	if (direction == 3)
+	if (move.direction == 3)
 	{
 		dy = 1;
 	}
@@ -121,6 +126,11 @@ void FieldVisualization::drawLine(int addrx, int addry, uint8_t direction, sf::C
 	}
 }
 
+
+void FieldVisualization::removeLine(Move move)
+{
+	drawLine(move, sf::Color::Black);
+}
 
 FieldVisualization::~FieldVisualization()
 {

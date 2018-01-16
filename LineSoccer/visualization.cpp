@@ -24,7 +24,7 @@ void Visualization::initialise()
 	
 	window = new sf::RenderWindow(sf::VideoMode(1001, 1001), "Line Soccer");
 	field = new FieldVisualization(
-		sf::Vector2f (5,5), 
+		sf::Vector2f (200,200), 
 		sf::Vector2i (800,800));
 	draw();
 }

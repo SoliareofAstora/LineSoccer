@@ -10,9 +10,11 @@ void InputController::update()
 	while (Visualization::instance().getWindow()->pollEvent(event))
 	{
 		if (event.type == sf::Event::Closed
-			//||event.type == sf::Event::KeyPressed
-		)
-		GameLogic::instance().stopPlaying();
+			|| event.type == sf::Event::KeyPressed
+			)
+		{
+			GameLogic::instance().stopPlaying();
+		}
 	}
 }
 

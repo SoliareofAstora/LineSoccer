@@ -132,8 +132,9 @@
     <ClCompile Include="LinkedList.cpp" />
     <ClCompile Include="GameLogic.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="PlayerLogic.cpp" />
+    <ClCompile Include="AgentLogic.cpp" />
     <ClCompile Include="RandomAgent.cpp" />
+    <ClCompile Include="stack.cpp" />
     <ClCompile Include="visualization.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -144,10 +145,11 @@
     <ClInclude Include="LinkedList.h" />
     <ClInclude Include="GameLogic.h" />
     <ClInclude Include="MapNode.h" />
-    <ClInclude Include="Movement.h" />
+    <ClInclude Include="Move.h" />
     <ClInclude Include="Player.h" />
-    <ClInclude Include="PlayerLogic.h" />
+    <ClInclude Include="AgentLogic.h" />
     <ClInclude Include="RandomAgent.h" />
+    <ClInclude Include="stack.h" />
     <ClInclude Include="visualization.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -4,6 +4,8 @@
 #include <SFML/Graphics/Texture.hpp>
 #include <SFML/Graphics/RenderWindow.hpp>
 
+class Move;
+
 class FieldVisualization
 {
 	sf::Image image;
@@ -18,7 +20,8 @@ public:
 	void reset();
 	void display(sf::RenderWindow *window);
 	void updateLogicSize();
-	void drawLine(int addrx, int addry, uint8_t direction, sf::Color color);
+	void drawLine(Move move, sf::Color color);
+	void removeLine(Move move);
 	~FieldVisualization();
 };
 

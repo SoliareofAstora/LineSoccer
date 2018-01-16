@@ -55,7 +55,7 @@ public:
 		return true;
 	}
 
-	void lockMultiple(int* setupVector)
+	void lockMultipleNodes(int* setupVector)
 	{
 		int size = sizeof setupVector;
 		if (size>0)
@@ -71,7 +71,7 @@ public:
 		}
 	}
 
-	void unlockMultiple(int* setupVector)
+	void unlockMultipleNodes(int* setupVector)
 	{
 		int size = sizeof setupVector;
 		if (size>0)

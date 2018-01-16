@@ -21,7 +21,7 @@ void GameLogic::mainLoop()
 
 void GameLogic::initialise()
 {
-	fieldLogic = new FieldLogic(sf::Vector2i(10,10));
+	fieldLogic = new FieldLogic(sf::Vector2i(20,20));
 	InputController::instance().initialise();
 
 	Visualization::instance().initialise();

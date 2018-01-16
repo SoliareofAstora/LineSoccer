@@ -55,8 +55,11 @@
     <ClCompile Include="GameLogic.cpp">
       <Filter>code\GameComponents\Logic</Filter>
     </ClCompile>
-    <ClCompile Include="PlayerLogic.cpp">
+    <ClCompile Include="AgentLogic.cpp">
       <Filter>code\GameComponents\Logic\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="stack.cpp">
+      <Filter>code\GameComponents\Utils</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -90,11 +93,14 @@
     <ClInclude Include="GameLogic.h">
       <Filter>code\GameComponents\Logic</Filter>
     </ClInclude>
-    <ClInclude Include="PlayerLogic.h">
+    <ClInclude Include="AgentLogic.h">
       <Filter>code\GameComponents\Logic\Player</Filter>
     </ClInclude>
-    <ClInclude Include="Movement.h">
+    <ClInclude Include="Move.h">
       <Filter>code\GameComponents\Logic\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="stack.h">
+      <Filter>code\GameComponents\Utils</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
