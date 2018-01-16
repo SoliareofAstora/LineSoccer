@@ -13,8 +13,8 @@ public:
 
 	FieldLogic();
 	FieldLogic(sf::Vector2i size);
-	bool checkMoveIfPossible(Move move);
-	void saveMove(Move move);
+	bool checkIfMoveIsPossible(Move move);
+	bool saveMove(Move move);
 	void reset();
 	~FieldLogic();
 };

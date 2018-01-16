@@ -1,6 +1,7 @@
 #include "GameLogic.h"
 #include "Visualization.h"
 #include "InputController.h"
+#include "UI.h"
 
 GameLogic::GameLogic(): fieldLogic(nullptr)
 {
@@ -15,6 +16,7 @@ void GameLogic::mainLoop()
 	while (playing)
 	{
 		InputController::instance().update();
+		
 		Visualization::instance().draw();
 	}
 }
@@ -23,7 +25,7 @@ void GameLogic::initialise()
 {
 	fieldLogic = new FieldLogic(sf::Vector2i(20,20));
 	InputController::instance().initialise();
-
+	UI::instance().initialise();
 	Visualization::instance().initialise();
 }
 

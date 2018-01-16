@@ -2,9 +2,9 @@
 #include "GameLogic.h"
 #include "stack.h"
 
-FieldVisualization::FieldVisualization(sf::Vector2f pos, sf::Vector2i sprSizePx)
+FieldVisualization::FieldVisualization(sf::Vector2f offset, sf::Vector2i sprSizePx)
 {
-	fieldSprite.setPosition(pos);
+	fieldSprite.setPosition(offset);
 	image.create(sprSizePx.x, sprSizePx.y, sf::Color::Black);
 	texture.create(sprSizePx.x, sprSizePx.y);
 	updateLogicSize();

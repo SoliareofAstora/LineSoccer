@@ -22,17 +22,16 @@ FieldLogic::FieldLogic(sf::Vector2i size)
 	Size = size;
 }
 
-bool FieldLogic::checkMoveIfPossible(Move move)
+bool FieldLogic::checkIfMoveIsPossible(Move move)
 {
 	return map[move.addrx][move.addry].checkOpen(move.direction);
 }
 
 bool FieldLogic::saveMove(Move move)
 {
-	if (checkMoveIfPossible(move))
-	{
-		map[move.addrx][move.addry].lockNode(move.direction);
-	}
+
+	map[move.addrx][move.addry].lockNode(move.direction);
+	return checkIfMoveIsPossible(move);
 }
 
 void FieldLogic::reset()

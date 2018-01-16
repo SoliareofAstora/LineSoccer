@@ -1,15 +1,17 @@
 #include "Visualization.h"
 
 #include <SFML/Graphics/RectangleShape.hpp>
+#include "UI.h"
 
 
 void Visualization::draw()
 {
-	if (clock.getElapsedTime().asMilliseconds()>NextFrameTime)
+	if (clock.getElapsedTime().asMilliseconds() > NextFrameTime)
 	{
 		NextFrameTime = clock.getElapsedTime().asMilliseconds() + FrameRate;
 		window->clear();
 		field->display(window);
+		UI::instance().display(window);
 		window->display();
 	}
 }
@@ -21,11 +23,10 @@ void Visualization::resetField()
 
 void Visualization::initialise()
 {
-	
-	window = new sf::RenderWindow(sf::VideoMode(1001, 1001), "Line Soccer");
+	window = new sf::RenderWindow(sf::VideoMode(1000, 1000), "Line Soccer");
 	field = new FieldVisualization(
-		sf::Vector2f (200,200), 
-		sf::Vector2i (800,800));
+		sf::Vector2f (211,211), //offset
+		sf::Vector2i (780,780));//size 
 	draw();
 }
 
