@@ -130,8 +130,9 @@
     <ClCompile Include="FieldVisualization.cpp" />
     <ClCompile Include="InputController.cpp" />
     <ClCompile Include="LinkedList.cpp" />
-    <ClCompile Include="Logic.cpp" />
+    <ClCompile Include="GameLogic.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="PlayerLogic.cpp" />
     <ClCompile Include="RandomAgent.cpp" />
     <ClCompile Include="visualization.cpp" />
   </ItemGroup>
@@ -141,10 +142,11 @@
     <ClInclude Include="FieldVisualization.h" />
     <ClInclude Include="InputController.h" />
     <ClInclude Include="LinkedList.h" />
-    <ClInclude Include="Logic.h" />
+    <ClInclude Include="GameLogic.h" />
     <ClInclude Include="MapNode.h" />
     <ClInclude Include="Movement.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="PlayerLogic.h" />
     <ClInclude Include="RandomAgent.h" />
     <ClInclude Include="visualization.h" />
   </ItemGroup>

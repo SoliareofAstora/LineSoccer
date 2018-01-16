@@ -1,10 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
     <Filter Include="code">
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
@@ -30,6 +26,9 @@
     <Filter Include="code\GameComponents\Logic\Field">
       <UniqueIdentifier>{4fba3c7b-5a8f-46d7-85ab-6ef0d05e2cb7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="code\GameComponents\Logic\Player">
+      <UniqueIdentifier>{d39cdd5e-5a63-488f-8986-054cea6bd44c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="LinkedList.cpp">
@@ -44,9 +43,6 @@
     <ClCompile Include="visualization.cpp">
       <Filter>code\GameComponents\Visualization</Filter>
     </ClCompile>
-    <ClCompile Include="Logic.cpp">
-      <Filter>code\GameComponents\Logic</Filter>
-    </ClCompile>
     <ClCompile Include="FieldVisualization.cpp">
       <Filter>code\GameComponents\Visualization</Filter>
     </ClCompile>
@@ -55,6 +51,12 @@
     </ClCompile>
     <ClCompile Include="FieldLogic.cpp">
       <Filter>code\GameComponents\Logic\Field</Filter>
+    </ClCompile>
+    <ClCompile Include="GameLogic.cpp">
+      <Filter>code\GameComponents\Logic</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerLogic.cpp">
+      <Filter>code\GameComponents\Logic\Player</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -70,17 +72,11 @@
     <ClInclude Include="RandomAgent.h">
       <Filter>code\Agents</Filter>
     </ClInclude>
-    <ClInclude Include="Movement.h">
-      <Filter>code\GameComponents\Utils</Filter>
-    </ClInclude>
     <ClInclude Include="InputController.h">
       <Filter>code\GameComponents\Input</Filter>
     </ClInclude>
     <ClInclude Include="visualization.h">
       <Filter>code\GameComponents\Visualization</Filter>
-    </ClInclude>
-    <ClInclude Include="Logic.h">
-      <Filter>code\GameComponents\Logic</Filter>
     </ClInclude>
     <ClInclude Include="FieldVisualization.h">
       <Filter>code\GameComponents\Visualization</Filter>
@@ -90,6 +86,15 @@
     </ClInclude>
     <ClInclude Include="MapNode.h">
       <Filter>code\GameComponents\Logic\Field</Filter>
+    </ClInclude>
+    <ClInclude Include="GameLogic.h">
+      <Filter>code\GameComponents\Logic</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerLogic.h">
+      <Filter>code\GameComponents\Logic\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="Movement.h">
+      <Filter>code\GameComponents\Logic\Player</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

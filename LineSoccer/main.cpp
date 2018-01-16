@@ -1,7 +1,7 @@
-#include "Logic.h"
+#include "GameLogic.h"
 
 int main()
 {
-	Logic::instance().mainLoop();
+	GameLogic::instance().mainLoop();
 	return 0;
 }

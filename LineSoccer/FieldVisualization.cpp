@@ -1,5 +1,5 @@
 #include "FieldVisualization.h"
-#include "Logic.h"
+#include "GameLogic.h"
 
 FieldVisualization::FieldVisualization(sf::Vector2f pos, sf::Vector2i sprSizePx)
 {
@@ -12,7 +12,7 @@ FieldVisualization::FieldVisualization(sf::Vector2f pos, sf::Vector2i sprSizePx)
 void FieldVisualization::reset()
 {
 	auto spritePxSize = image.getSize();
-	auto logicSize = Logic::instance().fieldSize();
+	auto logicSize = GameLogic::instance().fieldSize();
 	image.create(spritePxSize.x, spritePxSize.y, sf::Color::Black);
 	createNodeDots(logicSize);
 	createFieldBorder(logicSize);
@@ -28,7 +28,7 @@ void FieldVisualization::display(sf::RenderWindow* window)
 void FieldVisualization::updateLogicSize()
 {
 	auto spritePxSize = image.getSize();
-	auto logicSize = Logic::instance().fieldSize();
+	auto logicSize = GameLogic::instance().fieldSize();
 	
 	spritePxSize.x /= logicSize->x;
 	spritePxSize.y /= logicSize->y;

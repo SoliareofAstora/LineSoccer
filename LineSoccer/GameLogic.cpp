@@ -1,13 +1,13 @@
-#include "Logic.h"
+#include "GameLogic.h"
 #include "Visualization.h"
 #include "InputController.h"
 
-Logic::Logic(): fieldLogic(nullptr)
+GameLogic::GameLogic(): fieldLogic(nullptr)
 {
 
 }
 
-void Logic::mainLoop()
+void GameLogic::mainLoop()
 {
 	initialise();
 	fieldLogic->reset();
@@ -19,7 +19,7 @@ void Logic::mainLoop()
 	}
 }
 
-void Logic::initialise()
+void GameLogic::initialise()
 {
 	fieldLogic = new FieldLogic(sf::Vector2i(10,10));
 	InputController::instance().initialise();
@@ -27,12 +27,12 @@ void Logic::initialise()
 	Visualization::instance().initialise();
 }
 
-void Logic::update()
+void GameLogic::update()
 {
 
 }
 
 
-Logic::~Logic()
+GameLogic::~GameLogic()
 {
 }

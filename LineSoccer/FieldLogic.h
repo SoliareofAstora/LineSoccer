@@ -12,7 +12,7 @@ public:
 
 	FieldLogic();
 	FieldLogic(sf::Vector2i size);
-	bool move(int addrx, int addry, uint8_t direction, bool temp);
+	bool move(int addrx, int addry, uint8_t direction);
 	void reset();
 	~FieldLogic();
 };

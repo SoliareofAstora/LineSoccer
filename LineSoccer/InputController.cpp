@@ -2,7 +2,7 @@
 #include <SFML/Window/Event.hpp>
 #include <SFML/Graphics/RenderWindow.hpp>
 #include "visualization.h"
-#include "Logic.h"
+#include "GameLogic.h"
 
 void InputController::update()
 {
@@ -12,7 +12,7 @@ void InputController::update()
 		if (event.type == sf::Event::Closed
 			//||event.type == sf::Event::KeyPressed
 		)
-		Logic::instance().stopPlaying();
+		GameLogic::instance().stopPlaying();
 	}
 }
 

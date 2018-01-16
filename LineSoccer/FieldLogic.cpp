@@ -23,7 +23,7 @@ FieldLogic::FieldLogic(sf::Vector2i size)
 }
 
 //ok, or no
-bool FieldLogic::move(int addrx, int addry, uint8_t direction, bool temp)
+bool FieldLogic::move(int addrx, int addry, uint8_t direction)
 {
 	direction %= 8;
 	if (direction > 3)
@@ -47,7 +47,7 @@ bool FieldLogic::move(int addrx, int addry, uint8_t direction, bool temp)
 	{
 		
 	}
-	return true;
+	return false;
 }
 
 void FieldLogic::reset()
