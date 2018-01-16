@@ -1,7 +1,7 @@
-#include "GameRuler.h"
+#include "Logic.h"
 
 int main()
 {
-	GameRuler::instance().Play();
+	Logic::instance().mainLoop();
 	return 0;
 }

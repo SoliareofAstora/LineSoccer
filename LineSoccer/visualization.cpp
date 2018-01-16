@@ -3,11 +3,6 @@
 #include <SFML/Graphics/RectangleShape.hpp>
 
 
-void Visualization::update()
-{
-	
-}
-
 void Visualization::draw()
 {
 	if (clock.getElapsedTime().asMilliseconds()>NextFrameTime)

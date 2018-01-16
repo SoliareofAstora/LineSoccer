@@ -47,9 +47,6 @@
     <ClCompile Include="Logic.cpp">
       <Filter>code\GameComponents\Logic</Filter>
     </ClCompile>
-    <ClCompile Include="GameRuler.cpp">
-      <Filter>code\GameComponents</Filter>
-    </ClCompile>
     <ClCompile Include="FieldVisualization.cpp">
       <Filter>code\GameComponents\Visualization</Filter>
     </ClCompile>
@@ -57,9 +54,6 @@
       <Filter>code\GameComponents</Filter>
     </ClCompile>
     <ClCompile Include="FieldLogic.cpp">
-      <Filter>code\GameComponents\Logic\Field</Filter>
-    </ClCompile>
-    <ClCompile Include="MapNode.cpp">
       <Filter>code\GameComponents\Logic\Field</Filter>
     </ClCompile>
   </ItemGroup>
@@ -90,9 +84,6 @@
     </ClInclude>
     <ClInclude Include="FieldVisualization.h">
       <Filter>code\GameComponents\Visualization</Filter>
-    </ClInclude>
-    <ClInclude Include="GameRuler.h">
-      <Filter>code\GameComponents</Filter>
     </ClInclude>
     <ClInclude Include="FieldLogic.h">
       <Filter>code\GameComponents\Logic\Field</Filter>

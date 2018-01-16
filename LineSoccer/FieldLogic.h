@@ -6,15 +6,13 @@ class FieldLogic
 {
 	MapNode **map;
 
-	void deleteMap();
-	void initialiseMap();
-	void refreshNodes();
+
 public:
 	sf::Vector2i Size;
 
 	FieldLogic();
 	FieldLogic(sf::Vector2i size);
-
+	bool move(int addrx, int addry, uint8_t direction, bool temp);
 	void reset();
 	~FieldLogic();
 };

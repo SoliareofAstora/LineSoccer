@@ -15,44 +15,18 @@ public:
 	MapNode() { connections.reset(); }
 	~MapNode(){}
 	
-	void lock(int* setupVector)
+	bool checkOpen(uint8_t way)
 	{
-		int size = sizeof setupVector;
-		if (size>0)
-		{
-			for (int i = 0; i < size; i++)
-			{
-				if (setupVector[i]==0)
-				{
-					return;
-				}
-				connections[setupVector[i]-1] = true;
-			}
-		}
+		return !connections[way];
 	}
-	void unlock(int* setupVector)
-	{
-		int size = sizeof setupVector;
-		if (size>0)
-		{
-			for (int i = 0; i < size; i++)
-			{
-				if (setupVector[i] == 0)
-				{
-					return;
-				}
-				connections[setupVector[i] - 1] = false;
-			}
-		}
-	}
+
 	///returns true when connection is open & boook selected connection
 	bool lockNode(uint8_t way)
 	{
-		uint8_t propervalue = way % 4;
-		bool temp = !connections[propervalue];
+		bool temp = !connections[way];
 		if (temp)
 		{
-			connections[propervalue] = true;
+			connections[way] = true;
 		}
 		return temp;
 	}
@@ -60,11 +34,10 @@ public:
 	///returns true when conenction closed & make conenction open 
 	bool unlockNode(uint8_t way)
 	{
-		uint8_t propervalue = way % 8;
-		bool temp = connections[propervalue];
+		bool temp = connections[way];
 		if (temp)
 		{
-			connections[propervalue] = false;
+			connections[way] = false;
 		}
 		return temp;
 	}
@@ -81,5 +54,38 @@ public:
 		}
 		return true;
 	}
+
+	void lockMultiple(int* setupVector)
+	{
+		int size = sizeof setupVector;
+		if (size>0)
+		{
+			for (int i = 0; i < size; i++)
+			{
+				if (setupVector[i] == 0)
+				{
+					return;
+				}
+				connections[setupVector[i] - 1] = true;
+			}
+		}
+	}
+
+	void unlockMultiple(int* setupVector)
+	{
+		int size = sizeof setupVector;
+		if (size>0)
+		{
+			for (int i = 0; i < size; i++)
+			{
+				if (setupVector[i] == 0)
+				{
+					return;
+				}
+				connections[setupVector[i] - 1] = false;
+			}
+		}
+	}
+
 };
 

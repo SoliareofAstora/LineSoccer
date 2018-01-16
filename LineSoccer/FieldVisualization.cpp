@@ -93,23 +93,6 @@ void FieldVisualization::drawNode(int addrx, int addry)
 
 void FieldVisualization::drawLine(int addrx, int addry, uint8_t direction, sf::Color color)
 {
-	direction %= 8;
-	if (direction > 3)
-	{
-		if (direction > 4)
-		{
-			addrx--;
-		}
-		if (direction == 7)
-		{
-			addry--;
-		}
-		if (direction < 6)
-		{
-			addry++;
-		}
-		direction -= 4;
-	}
 	int x = addrx * step;
 	int y = addry * step;
 	int dx = 0;

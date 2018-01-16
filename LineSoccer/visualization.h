@@ -19,7 +19,6 @@ public:
 	FieldVisualization* field;
 
 	void initialise();
-	void update();
 	void draw();
 	void resetField();
 	sf::RenderWindow* getWindow() const { return window; }
