@@ -24,7 +24,7 @@ void FieldLogic::initialise(sf::Vector2i size)
 
 bool FieldLogic::checkIfMoveIsPossible(Move move)
 {
-	return GetNode(move)->checkOpen(move.direction);
+	return GetNode(move)->checkOpen(move.getDirection());
 }
 
 bool FieldLogic::checkIfMoveIsPossible(int direction)
@@ -35,7 +35,7 @@ bool FieldLogic::checkIfMoveIsPossible(int direction)
 
 void FieldLogic::saveMove(Move move,sf::Color PlayerColor)
 {
-	GetNode(move)->lockNode(move.direction);
+	GetNode(move)->lockNode(move.getDirection());
 	GetRootNode(move)->allowBounce();
 	Visualization::instance().field->drawLine(move.GetSecuredMove(),PlayerColor);
 	BallPosition = move.GetDestination();
@@ -148,5 +148,5 @@ void FieldLogic::reset()
 	map[Size.x / 2][Size.y / 2].allowBounce();
 	BallPosition = Size / 2;
 	logBallPosition();
-	//Test();
+	Test();
 }

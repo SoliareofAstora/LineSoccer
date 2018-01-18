@@ -21,6 +21,15 @@ public:
 	{
 		this->direction %= 8;
 	}
+
+	int8_t getDirection()
+	{
+		if (direction > 3)
+		{
+			return direction - 4;
+		}
+		return direction;
+	}
 	sf::Vector2i GetDestination()
 	{
 		int x = addrx;
