@@ -77,7 +77,7 @@
       <Filter>code\GameComponents\UI</Filter>
     </ClCompile>
     <ClCompile Include="Arrows.cpp">
-      <Filter>code</Filter>
+      <Filter>code\GameComponents\UI\Elements</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -105,9 +105,6 @@
     <ClInclude Include="AgentLogic.h">
       <Filter>code\GameComponents\Logic\Player</Filter>
     </ClInclude>
-    <ClInclude Include="Move.h">
-      <Filter>code\GameComponents\Logic\Player</Filter>
-    </ClInclude>
     <ClInclude Include="Visualization.h">
       <Filter>code\GameComponents\Visualization</Filter>
     </ClInclude>
@@ -126,10 +123,22 @@
     <ClInclude Include="Button.h">
       <Filter>code\GameComponents\UI\Elements</Filter>
     </ClInclude>
-    <ClInclude Include="Arrow.h">
-      <Filter>code</Filter>
-    </ClInclude>
     <ClInclude Include="Arrows.h">
+      <Filter>code\GameComponents\UI\Elements</Filter>
+    </ClInclude>
+    <ClInclude Include="UIenum.h">
+      <Filter>code\GameComponents\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Move.h">
+      <Filter>code\GameComponents\Logic</Filter>
+    </ClInclude>
+    <ClInclude Include="ArrowEnum.h">
+      <Filter>code\GameComponents\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="UIelement.h">
+      <Filter>code\GameComponents\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Arrow.h">
       <Filter>code\GameComponents\UI\Elements</Filter>
     </ClInclude>
   </ItemGroup>

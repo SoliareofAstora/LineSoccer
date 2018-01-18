@@ -13,12 +13,12 @@ public:
 			for (int j = 0; j < 3; j++)
 			{
 				arrows[i][j] = Arrow(
-					sf::Vector2f(35 + 70 * i, 35 + 70 * j),
+					sf::Vector2f(35.f + 70 * i, 35.f + 70 * j),
 					sf::Vector2i(68, 68));
 			}
 		}
 		arrows[1][1].texture.loadFromFile("E:\\Studia\\MySmallProjects\\LineSoccer\\Debug\\Graphic\\ok.png");
-		int rot = 0;
+		float rot = 0;
 		arrows[2][1].rotate(rot * 45); rot++;
 		arrows[2][2].rotate(rot * 45); rot++;
 		arrows[1][2].rotate(rot * 45); rot++;

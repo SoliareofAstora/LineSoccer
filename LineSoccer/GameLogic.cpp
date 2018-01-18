@@ -3,35 +3,35 @@
 #include "InputController.h"
 #include "UI.h"
 
-GameLogic::GameLogic(): fieldLogic(nullptr)
+GameLogic::GameLogic()
 {
-
 }
 
 void GameLogic::mainLoop()
 {
 	initialise();
-	fieldLogic->reset();
+	FieldLogic::instance().reset();
 
 	while (playing)
 	{
 		InputController::instance().update();
-		
+		//ui.update?
+		//agents->update();
 		Visualization::instance().draw();
+		system("pause");
 	}
 }
 
 void GameLogic::initialise()
 {
-	fieldLogic = new FieldLogic(sf::Vector2i(20,20));
-	InputController::instance().initialise();
+	FieldLogic::instance().initialise(sf::Vector2i(20,30));
+	agents = new AgentLogic();
 	UI::instance().initialise();
 	Visualization::instance().initialise();
 }
 
 void GameLogic::update()
 {
-
 }
 
 

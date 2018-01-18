@@ -8,8 +8,10 @@ class MapNode
 	 next 4 steps are N*(1 hour 30 minutes)
 	 false - connection is open
 	 true  - connection is closed
+
+	conn[8] false - no bounce
 	 */
-	std::bitset<4> connections;
+	std::bitset<9> connections;
 
 public:
 	MapNode() { connections.reset(); }
@@ -20,6 +22,14 @@ public:
 		return !connections[way];
 	}
 
+	void allowBounce()
+	{
+		connections[8] = true;
+	}
+	bool bounce()
+	{
+		return connections[8];
+	}
 	///returns true when connection is open & boook selected connection
 	bool lockNode(uint8_t way)
 	{

@@ -141,6 +141,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Arrow.h" />
+    <ClInclude Include="ArrowEnum.h" />
     <ClInclude Include="Arrows.h" />
     <ClInclude Include="Button.h" />
     <ClInclude Include="Debug.cpp" />
@@ -156,6 +157,8 @@
     <ClInclude Include="RandomAgent.h" />
     <ClInclude Include="stack.h" />
     <ClInclude Include="UI.h" />
+    <ClInclude Include="UIelement.h" />
+    <ClInclude Include="UIenum.h" />
     <ClInclude Include="Visualization.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
