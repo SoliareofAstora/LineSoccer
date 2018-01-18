@@ -11,7 +11,7 @@ void Arrows::display(sf::RenderWindow* window)
 	{
 		for (int j = 0; j < 3; j++)
 		{
-			buttons[i][j].display(window);
+			arrows[i][j].display(window);
 		}
 	}
 }

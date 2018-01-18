@@ -12,6 +12,7 @@ void Visualization::draw()
 		window->clear();
 		field->display(window);
 		UI::instance().display(window);
+
 		window->display();
 	}
 }

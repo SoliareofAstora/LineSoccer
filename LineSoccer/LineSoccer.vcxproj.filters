@@ -126,6 +126,11 @@
     <ClInclude Include="Button.h">
       <Filter>code\GameComponents\UI\Elements</Filter>
     </ClInclude>
-    <ClInclude Include="Arrows.h" />
+    <ClInclude Include="Arrow.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="Arrows.h">
+      <Filter>code\GameComponents\UI\Elements</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

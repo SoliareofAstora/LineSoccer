@@ -7,18 +7,29 @@
 
 class Button
 {
-	sf::Sprite sprite;
 public:
+	sf::Sprite sprite;
+	sf::Texture texture;
 	Button() {};
 	Button(sf::Vector2f offset, sf::Vector2i sprSizePx)
 	{
 		sprite.setPosition(offset);
 		sf::Image image;
 		image.create(sprSizePx.x, sprSizePx.y, sf::Color::White);
-		sf::Texture texture;
 		texture.create(sprSizePx.x, sprSizePx.y);
 		texture.update(image);
 		sprite.setTexture(texture);
 	}
-	void display(sf::RenderWindow *window) { window->draw(sprite); }
+	Button(sf::Vector2f offset, sf::Vector2i sprSizePx,sf::String ImagePath)
+	{
+		sprite.setPosition(offset);
+		texture.loadFromFile(ImagePath);
+		sprite.setTexture(texture);
+	}
+
+	void display(sf::RenderWindow *window)
+	{
+		sprite.setTexture(texture);
+		window->draw(sprite);
+	}
 };
