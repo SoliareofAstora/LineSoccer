@@ -15,13 +15,13 @@ class FieldLogic
 	
 	MapNode* GetNode(Move move)
 	{
-		Move mov = move.GetSecuredMove();
-		return &map[mov.addrx][mov.addry];
-	}
-	MapNode* GetRootNode(Move move)
-	{
 		return &map[move.addrx][move.addry];
 	}
+	MapNode* GetNode(sf::Vector2i move)
+	{
+		return &map[move.x][move.y];
+	}
+
 public:
 	static FieldLogic &instance() { static FieldLogic fieldlogic; return fieldlogic; }
 	sf::Vector2i Size;

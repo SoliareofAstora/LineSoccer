@@ -24,7 +24,12 @@ void FieldLogic::initialise(sf::Vector2i size)
 
 bool FieldLogic::checkIfMoveIsPossible(Move move)
 {
-	return GetNode(move)->checkOpen(move.getDirection());
+	MapNode *temp = GetNode(move);
+	if (temp==nullptr)
+	{
+		return false;
+	}
+	return GetNode(move)->checkOpen(move.direction);
 }
 
 bool FieldLogic::checkIfMoveIsPossible(int direction)
@@ -35,10 +40,9 @@ bool FieldLogic::checkIfMoveIsPossible(int direction)
 
 void FieldLogic::saveMove(Move move,sf::Color PlayerColor)
 {
-	GetNode(move)->lockNode(move.getDirection());
-	GetRootNode(move)->allowBounce();
-	Visualization::instance().field->drawLine(move.GetSecuredMove(),PlayerColor);
+	GetNode(move)->lockNode(move.direction);
 	BallPosition = move.GetDestination();
+	Visualization::instance().field->drawLine(move,PlayerColor);
 	logBallPosition();
 }
 
@@ -49,7 +53,8 @@ void FieldLogic::saveMove(int direction, sf::Color PlayerColor)
 
 bool FieldLogic::IsMoveFinished()
 {
-	bool output = !map[BallPosition.x][BallPosition.y].bounce();
+	bool output = !GetNode(BallPosition)->bounce();
+	GetNode(BallPosition)->allowBounce();
 	return output;
 }
 
@@ -67,15 +72,14 @@ FieldLogic::~FieldLogic()
 
 void FieldLogic::Test()
 {
-	srand(time(NULL));
-	for (int i = 1; i < Size.x-1; i++)
+	for (int i = 0; i < Size.x; i++)
 	{
-		for (int j = 1; j < Size.y-1; j++)
+		for (int j = 0; j < Size.y; j++)
 		{
-			for (uint8_t a = 0; a < 8; a++)
-				if (map[i][j].lockNode(a))
+			for (uint8_t a = 0; a < 4; a++)
+				if (map[i][j].checkOpen(a))
 				{
-					Visualization::instance().field->drawLine(Move(i, j, a).GetSecuredMove(), sf::Color(rand() % 255, rand() % 255, rand() % 255));
+					Visualization::instance().field->drawLine(Move(i, j, a), sf::Color::Green);
 				}
 			Visualization::instance().draw();
 		}
@@ -121,6 +125,7 @@ void FieldLogic::reset()
 		}
 		map[Size.x - 1][j].lockMultipleNodes(lockKey[0]);
 	}
+
 	map[0][Size.y / 2].unlockMultipleNodes(lockKey[4]);
 	map[Size.x - 1][Size.y / 2 - 1].unlockMultipleNodes(lockKey[5]);
 	map[Size.x - 1][Size.y / 2 + 1].unlockMultipleNodes(lockKey[7]);

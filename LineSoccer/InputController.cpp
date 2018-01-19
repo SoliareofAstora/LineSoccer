@@ -17,59 +17,61 @@ void InputController::update()
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
 	{
-		if (awaitingSpacebar)
+	//	if (awaitingSpacebar)
 		{
 			FieldLogic::instance().reset();
-			awaitingSpacebar = false;
+			//awaitingSpacebar = false;
 		}
 	}
 	else
 	{
-		awaitingSpacebar = true;
+		//awaitingSpacebar = true;
 	}
+
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
 		{
 			if (FieldLogic::instance().checkIfMoveIsPossible(7))
-				FieldLogic::instance().saveMove(7, sf::Color::Red);
+				FieldLogic::instance().saveMove(7, tempcolor);
 		}
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::E))
 		{
 			if (FieldLogic::instance().checkIfMoveIsPossible(1))
-				FieldLogic::instance().saveMove(1, sf::Color::Red);
+				FieldLogic::instance().saveMove(1, tempcolor);
 		}
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
 		{
 			if (FieldLogic::instance().checkIfMoveIsPossible(6))
-				FieldLogic::instance().saveMove(6, sf::Color::Red);
+				FieldLogic::instance().saveMove(6, tempcolor);
 		}
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
 		{
 			if (FieldLogic::instance().checkIfMoveIsPossible(0))
-				FieldLogic::instance().saveMove(0, sf::Color::Red);
+				FieldLogic::instance().saveMove(0, tempcolor);
 		}
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
 		{
 			if (FieldLogic::instance().checkIfMoveIsPossible(2))
-				FieldLogic::instance().saveMove(2, sf::Color::Red);
+				FieldLogic::instance().saveMove(2, tempcolor);
 		}
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z))
 		{
 			if (FieldLogic::instance().checkIfMoveIsPossible(5))
-				FieldLogic::instance().saveMove(5, sf::Color::Red);
+				FieldLogic::instance().saveMove(5, tempcolor);
 		}
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::X))
 		{
 			if (FieldLogic::instance().checkIfMoveIsPossible(4))
-				FieldLogic::instance().saveMove(4, sf::Color::Red);
+				FieldLogic::instance().saveMove(4, tempcolor);
 		}
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::C))
 		{
-			if (FieldLogic::instance().checkIfMoveIsPossible(23))
-				FieldLogic::instance().saveMove(3, sf::Color::Red);
+			if (FieldLogic::instance().checkIfMoveIsPossible(3))
+				FieldLogic::instance().saveMove(3, tempcolor);
 		}
 		if (FieldLogic::instance().IsMoveFinished())
 		{
-			std::cerr << "movedone\n";
+			awaitingSpacebar = !awaitingSpacebar;
+			tempcolor = awaitingSpacebar ? sf::Color::Red : sf::Color::White;
 		}
 }
 

@@ -14,7 +14,7 @@ void UI::initialise()
 
 void UI::display(sf::RenderWindow* window)
 {
-	arrows.display(window);
+	//arrows.display(window);
 }
 
 UI::~UI()
