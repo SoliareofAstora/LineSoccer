@@ -6,7 +6,8 @@
 
 void Visualization::draw()
 {
-	if (clock.getElapsedTime().asMilliseconds() > NextFrameTime)
+	//TODO przywróciæ 
+	//if (clock.getElapsedTime().asMilliseconds() > NextFrameTime)
 	{
 		NextFrameTime = clock.getElapsedTime().asMilliseconds() + FrameRate;
 		window->clear();

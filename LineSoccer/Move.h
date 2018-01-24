@@ -59,6 +59,10 @@ public:
 
 	void checkDirection()
 	{
+		if (direction>7)
+		{
+			direction -= 8;
+		}
 		if (direction > 3)
 		{
 			changed = true;

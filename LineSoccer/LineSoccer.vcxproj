@@ -129,6 +129,7 @@
     <ClCompile Include="Arrows.cpp" />
     <ClCompile Include="FieldLogic.cpp" />
     <ClCompile Include="FieldVisualization.cpp" />
+    <ClCompile Include="FullTreeAgent.cpp" />
     <ClCompile Include="InputController.cpp" />
     <ClCompile Include="LinkedList.cpp" />
     <ClCompile Include="GameLogic.cpp" />
@@ -147,11 +148,13 @@
     <ClInclude Include="Debug.cpp" />
     <ClInclude Include="FieldLogic.h" />
     <ClInclude Include="FieldVisualization.h" />
+    <ClInclude Include="FullTreeAgent.h" />
     <ClInclude Include="InputController.h" />
     <ClInclude Include="LinkedList.h" />
     <ClInclude Include="GameLogic.h" />
     <ClInclude Include="MapNode.h" />
     <ClInclude Include="Move.h" />
+    <ClInclude Include="node.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="AgentLogic.h" />
     <ClInclude Include="RandomAgent.h" />

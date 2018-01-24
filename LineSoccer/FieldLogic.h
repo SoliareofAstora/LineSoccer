@@ -26,20 +26,28 @@ public:
 	static FieldLogic &instance() { static FieldLogic fieldlogic; return fieldlogic; }
 	sf::Vector2i Size;
 	sf::Vector2i BallPosition;
+	sf::Vector2i vBallPosition;
 	
 	void initialise(sf::Vector2i size);
 
-	bool checkIfMoveIsPossible(Move move, bool buul);
 	bool checkIfMoveIsPossible(Move move);
 	bool checkIfMoveIsPossible(int direction);
-	bool checkIfMoveIsPossible(int direction,bool buul);
+	bool vcheck(int direction);
 	bool checkIfAllLocked();
+	bool vcheckIfAllLocked();
 	void saveMove(Move move, sf::Color PlayerColor);
 	void saveMove(int direction, sf::Color PlayerColor);
+	void vsaveMove(int direction);
+	int vdistance();
 
 	bool MoveNotFinished();
+	bool vMoveNotFinished();
+	bool vunlock(Move direction);
+	bool vunlock(int direction);
 	bool IsMoveFinished();
 	void logBallPosition(){ std::cerr << "\nBall position: " << BallPosition.x << " " << BallPosition.y << std::endl; }
+	void logvBallPosition() { std::cerr << "\nvBall position: " << vBallPosition.x << " " << vBallPosition.y << std::endl; }
+
 	~FieldLogic();
 	void Test();
 	void reset();

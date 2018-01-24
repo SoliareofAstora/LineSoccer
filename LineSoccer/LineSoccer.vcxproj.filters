@@ -79,6 +79,9 @@
     <ClCompile Include="Arrows.cpp">
       <Filter>code\GameComponents\UI\Elements</Filter>
     </ClCompile>
+    <ClCompile Include="FullTreeAgent.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Debug.cpp">
@@ -141,5 +144,7 @@
     <ClInclude Include="Arrow.h">
       <Filter>code\GameComponents\UI\Elements</Filter>
     </ClInclude>
+    <ClInclude Include="FullTreeAgent.h" />
+    <ClInclude Include="node.h" />
   </ItemGroup>
 </Project>

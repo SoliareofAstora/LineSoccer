@@ -22,9 +22,17 @@ public:
 		return !connections[way];
 	}
 
+	bool vcheckOpen(uint8_t way)
+	{
+		return !connections[way+4];
+	}
+
 	void allowBounce()
 	{
 		connections[8] = true;
+	}
+	void disableBounce(){
+		connections[8] = false;
 	}
 	bool bounce()
 	{
@@ -33,10 +41,17 @@ public:
 	///returns true when connection is open & boook selected connection
 	bool lockNode(uint8_t way)
 	{
-		bool temp = !connections[way];
+
+			connections[way] = true;
+			connections[way+4] = true;
+			return true;
+	}
+	bool vlockNode(uint8_t way)
+	{
+		bool temp = !connections[way+4];
 		if (temp)
 		{
-			connections[way] = true;
+			connections[way+4] = true;
 		}
 		return temp;
 	}
@@ -48,6 +63,15 @@ public:
 		if (temp)
 		{
 			connections[way] = false;
+		}
+		return temp;
+	}
+	bool vunlockNode(uint8_t way)
+	{
+		bool temp = connections[way+4];
+		if (temp)
+		{
+			connections[way+4] = false;
 		}
 		return temp;
 	}

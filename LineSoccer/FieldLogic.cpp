@@ -24,7 +24,7 @@ void FieldLogic::initialise(sf::Vector2i size)
 	Size = size;
 }
 
-bool FieldLogic::checkIfMoveIsPossible(Move move, bool buul)
+bool FieldLogic::checkIfMoveIsPossible(Move move)
 {
 	sf::Vector2i dest = move.GetDestination();
 	if (dest.y<0)
@@ -41,53 +41,40 @@ bool FieldLogic::checkIfMoveIsPossible(Move move, bool buul)
 		reset();
 		return true;
 	}
-	if (false)
-	{
-		if (checkIfAllLocked())
-		{
-			/*for (int i = 0; i < 1; i++) {
-
-				Visualization::instance().field->drawLine(move, sf::Color::Green);
-				sleep(sf::milliseconds(50));
-				Visualization::instance().field->drawLine(move, sf::Color::White);
-				sleep(sf::milliseconds(50));
-			}*/
-			for (int i = 0; i<8; i++)
-			{
-				if (checkIfMoveIsPossible(i, false))
-				{
-					std::cerr << "PROBLEM!!!";
-				}
-			}
-			system("pause");
-			Visualization::instance().resetField();
-			reset();
-			return true;
-		}
-	}
 	return GetNode(move)->checkOpen(move.direction);
-}
-
-bool FieldLogic::checkIfMoveIsPossible(Move move)
-{
-	return checkIfMoveIsPossible(move, true);
 }
 
 bool FieldLogic::checkIfMoveIsPossible(int direction)
 {
-	return checkIfMoveIsPossible(Move(BallPosition, direction),true);
+	return checkIfMoveIsPossible(Move(BallPosition, direction));
 }
 
-bool FieldLogic::checkIfMoveIsPossible(int direction,bool buul)
+bool FieldLogic::vcheck(int direction)
 {
-	return checkIfMoveIsPossible(Move(BallPosition, direction), buul);
+	Move move = Move(vBallPosition, direction);
+	sf::Vector2i dest = move.GetDestination();
+	if (dest.y<0)
+	{
+		return false;
+	}
+	if (dest.y>Size.y - 1)
+	{
+		return false;
+	}
+	if (dest.y == Size.y / 2 && (dest.x == Size.x || dest.x == 0))
+	{
+		Visualization::instance().resetField();
+		reset();
+		return true;
+	}
+	return GetNode(move)->vcheckOpen(move.direction);
 }
 
 bool FieldLogic::checkIfAllLocked()
 {
 	for (int i =0;i<8;i++)
 	{
-		if (checkIfMoveIsPossible(i,false))
+		if (checkIfMoveIsPossible(i))
 		{
 			return false;
 		}
@@ -95,13 +82,24 @@ bool FieldLogic::checkIfAllLocked()
 	return true;
 }
 
+bool FieldLogic::vcheckIfAllLocked()
+{
+	for (int i = 0; i<8; i++)
+	{
+		if (vcheck(i))
+		{
+			return false;
+		}
+	}
+	return true;
+}
 
 void FieldLogic::saveMove(Move move,sf::Color PlayerColor)
 {
 	GetNode(move)->lockNode(move.direction);
 	GetNode(BallPosition)->allowBounce();
 	BallPosition = move.GetDestination();
-
+	vBallPosition = BallPosition;
 	Visualization::instance().field->drawLine(move,PlayerColor);
 	logBallPosition();
 }
@@ -111,9 +109,65 @@ void FieldLogic::saveMove(int direction, sf::Color PlayerColor)
 	saveMove(Move(BallPosition, direction), PlayerColor);
 }
 
+void FieldLogic::vsaveMove(int direction)
+{
+	Move move = Move(vBallPosition, direction);
+	GetNode(move)->vlockNode(move.direction);
+	vBallPosition = move.GetDestination();
+	logvBallPosition();
+}
+
+int FieldLogic::vdistance()
+{
+	return (pow(vBallPosition.y - (Size.y / 2), 2) + pow(vBallPosition.x, 2));
+}
+
 bool FieldLogic::MoveNotFinished()
 {
-	return GetNode(BallPosition)->bounce();
+	if (checkIfAllLocked())
+	{
+		Visualization::instance().resetField();
+		reset();
+		return true;
+	}
+	bool temp = GetNode(BallPosition)->bounce();
+	GetNode(BallPosition)->allowBounce();
+	return temp;
+}
+
+bool FieldLogic::vMoveNotFinished()
+{
+	/*if (vcheckIfAllLocked())
+	{
+		return true;
+	}*/
+	bool temp = GetNode(vBallPosition)->bounce();
+	return temp;
+}
+
+bool FieldLogic::vunlock(int direction)
+{
+	if (direction>7)
+	{
+		return false;
+	}
+	Move move = Move(vBallPosition, direction+4);
+	GetNode(move.GetSource())->disableBounce();
+	GetNode(move)->vunlockNode(move.direction);
+	vBallPosition = move.GetSource();
+
+	return true;
+}
+
+bool FieldLogic::vunlock(Move move)
+{
+
+	GetNode(move)->vunlockNode(move.direction);
+	vBallPosition = move.GetSource();
+
+
+
+	return true;
 }
 
 bool FieldLogic::IsMoveFinished()
@@ -121,7 +175,7 @@ bool FieldLogic::IsMoveFinished()
 	bool output = !GetNode(BallPosition)->bounce();
 	if (!output)
 	{
-		std::cerr << "bounce";
+		//std::cerr << "bounce";
 	}
 	return output;
 }

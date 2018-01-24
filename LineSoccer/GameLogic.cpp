@@ -38,7 +38,7 @@ void GameLogic::mainLoop()
 
 void GameLogic::initialise()
 {
-	FieldLogic::instance().initialise(sf::Vector2i(4,4));
+	FieldLogic::instance().initialise(sf::Vector2i(20,20));
 	agents = new AgentLogic();
 	UI::instance().initialise();
 	Visualization::instance().initialise();

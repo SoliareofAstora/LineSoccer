@@ -4,32 +4,31 @@
 
 LinkedList::LinkedList()
 {
-	head = new node;
-	head->next = head->prev = head;
+	head.next = head.prev = &head;
 }
 
 LinkedList::~LinkedList()
 {
-	while (head->next!=head)
+	while (head.next!=&head)
 	{
 		pop();
 	}
-	delete head;
+
 }
 
 void LinkedList::push_front(int value)
 {
 	node *temp = new node;
 	temp->value = value;
-	temp->next = head->next;
-	temp->prev = head;
+	temp->next = head.next;
+	temp->prev = &head;
 	temp->next->prev = temp;
 	temp->prev->next = temp;
 }
 
 int LinkedList::pop_front()
 {
-	node *temp = head->next;
+	node *temp = head.next;
 	temp->prev->next = temp->next;
 	temp->next->prev = temp->prev;
 	int value = temp->value;
@@ -41,15 +40,15 @@ void LinkedList::push_back(int value)
 {
 	node *temp = new node;
 	temp->value = value;
-	temp->next = head;
-	temp->prev = head->prev;
+	temp->next = &head;
+	temp->prev = head.prev;
 	temp->next->prev = temp;
 	temp->prev->next = temp;
 }
 
 int LinkedList::pop_back() 
 {
-	node *temp = head->prev;
+	node *temp = head.prev;
 	temp->prev->next = temp->next;
 	temp->next->prev = temp->prev;
 	int value = temp->value;
@@ -59,7 +58,7 @@ int LinkedList::pop_back()
 
 int* LinkedList::find(int value)
 {
-	node* temp = head->next;
+	node* temp = head.next;
 	while (temp != nullptr)
 	{
 		if (temp->value == value)
@@ -67,7 +66,7 @@ int* LinkedList::find(int value)
 			return &temp->value;
 		}
 		temp = temp->next;
-		if (temp==head)
+		if (temp==&head)
 		{
 			break;
 		}
@@ -78,8 +77,8 @@ int* LinkedList::find(int value)
 int LinkedList::size() 
 {
 	int size = 0;
-	node *current = head->next;
-	while (current != head)
+	node *current = head.next;
+	while (current !=& head)
 	{
 		size++;
 		current = current->next;
@@ -89,17 +88,17 @@ int LinkedList::size()
 
 void LinkedList::display()
 {
-	node *current = head->next;
-	while (current != head)
+	node *current = head.next;
+	while (current != &head)
 	{
-		std::cout << current->value << std::endl;	
+		std::cout << current->value << " ";	
 		current = current->next;
 	}
 }
 
 int LinkedList::getValue(int i)
 {
-	node *temp = head->next;
+	node *temp = head.next;
 	int x = 0;
 	do
 	{
