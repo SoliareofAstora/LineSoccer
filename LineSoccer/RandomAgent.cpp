@@ -1,10 +1,8 @@
 #include "RandomAgent.h"
 #include <ctime>
-
-
-RandomAgent::RandomAgent()
-{
-}
+#include <stdlib.h>
+#include <SFML/System/Sleep.hpp>
+#include <random>
 
 
 void RandomAgent::getMove()
@@ -12,22 +10,23 @@ void RandomAgent::getMove()
 
 }
 
-void RandomAgent::Move()
+void RandomAgent::Move(sf::Color color)
 {
-	srand(time(NULL));
+	
 	int destination = 0;
-	while (!FieldLogic::instance().IsMoveFinished())
+	while (FieldLogic::instance().MoveNotFinished())
 	{
-		destination = rand() % 8;
-		std::cerr <<" "<< destination;
+		destination = rand()/(RAND_MAX/8);
+		//std::cerr <<"test "<< destination;
 		
 		if (FieldLogic::instance().checkIfMoveIsPossible(destination))
 		{
 			FieldLogic::instance().saveMove(destination, color);
 		}
 	}
-	std::cerr << " \n" << destination<< "  >";
-	system("pause");
+	//std::cerr << " wybrano " << destination<< "  \n";
+	//system("pause");
+	sf::sleep(sf::milliseconds(10));
 }
 
 RandomAgent::~RandomAgent()

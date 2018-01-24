@@ -1,5 +1,7 @@
 #include "FieldLogic.h"
 #include "Visualization.h"
+#include "GameLogic.h"
+#include <SFML/System/Sleep.hpp>
 
 
 FieldLogic::FieldLogic(): map(nullptr)
@@ -22,26 +24,84 @@ void FieldLogic::initialise(sf::Vector2i size)
 	Size = size;
 }
 
-bool FieldLogic::checkIfMoveIsPossible(Move move)
+bool FieldLogic::checkIfMoveIsPossible(Move move, bool buul)
 {
-	MapNode *temp = GetNode(move);
-	if (temp==nullptr)
+	sf::Vector2i dest = move.GetDestination();
+	if (dest.y<0)
 	{
 		return false;
+	}
+	if (dest.y>Size.y - 1)
+	{
+		return false;
+	}
+	if (dest.y == Size.y / 2 && (dest.x == Size.x || dest.x == 0))
+	{
+		Visualization::instance().resetField();
+		reset();
+		return true;
+	}
+	if (false)
+	{
+		if (checkIfAllLocked())
+		{
+			/*for (int i = 0; i < 1; i++) {
+
+				Visualization::instance().field->drawLine(move, sf::Color::Green);
+				sleep(sf::milliseconds(50));
+				Visualization::instance().field->drawLine(move, sf::Color::White);
+				sleep(sf::milliseconds(50));
+			}*/
+			for (int i = 0; i<8; i++)
+			{
+				if (checkIfMoveIsPossible(i, false))
+				{
+					std::cerr << "PROBLEM!!!";
+				}
+			}
+			system("pause");
+			Visualization::instance().resetField();
+			reset();
+			return true;
+		}
 	}
 	return GetNode(move)->checkOpen(move.direction);
 }
 
+bool FieldLogic::checkIfMoveIsPossible(Move move)
+{
+	return checkIfMoveIsPossible(move, true);
+}
+
 bool FieldLogic::checkIfMoveIsPossible(int direction)
 {
-	return checkIfMoveIsPossible(Move(BallPosition, direction));
+	return checkIfMoveIsPossible(Move(BallPosition, direction),true);
+}
+
+bool FieldLogic::checkIfMoveIsPossible(int direction,bool buul)
+{
+	return checkIfMoveIsPossible(Move(BallPosition, direction), buul);
+}
+
+bool FieldLogic::checkIfAllLocked()
+{
+	for (int i =0;i<8;i++)
+	{
+		if (checkIfMoveIsPossible(i,false))
+		{
+			return false;
+		}
+	}
+	return true;
 }
 
 
 void FieldLogic::saveMove(Move move,sf::Color PlayerColor)
 {
 	GetNode(move)->lockNode(move.direction);
+	GetNode(BallPosition)->allowBounce();
 	BallPosition = move.GetDestination();
+
 	Visualization::instance().field->drawLine(move,PlayerColor);
 	logBallPosition();
 }
@@ -51,10 +111,18 @@ void FieldLogic::saveMove(int direction, sf::Color PlayerColor)
 	saveMove(Move(BallPosition, direction), PlayerColor);
 }
 
+bool FieldLogic::MoveNotFinished()
+{
+	return GetNode(BallPosition)->bounce();
+}
+
 bool FieldLogic::IsMoveFinished()
 {
 	bool output = !GetNode(BallPosition)->bounce();
-	GetNode(BallPosition)->allowBounce();
+	if (!output)
+	{
+		std::cerr << "bounce";
+	}
 	return output;
 }
 
@@ -153,5 +221,5 @@ void FieldLogic::reset()
 	map[Size.x / 2][Size.y / 2].allowBounce();
 	BallPosition = Size / 2;
 	logBallPosition();
-	Test();
+	//Test();
 }

@@ -1,22 +1,21 @@
 #include "AgentLogic.h"
+#include <ctime>
+#include "Visualization.h"
 
-
-
-AgentLogic::AgentLogic()
-{
-}
 
 void AgentLogic::initialise()
 {
-	players[0] = RandomAgent(sf::Color::Red);
-	players[1] = RandomAgent(sf::Color::White);
+	srand(time(NULL));
+	players[0] = RandomAgent();
+	players[1] = RandomAgent();
 }
 
 
 void AgentLogic::update()
 {
-	currentplayer = !currentplayer;
-	players[currentplayer ? 0 : 1].Move();
+	currentplayer = currentplayer;
+	players[currentplayer ? 0 : 1].Move(currentplayer ? sf::Color::Red : sf::Color::Cyan);
+	Visualization::instance().draw();
 }
 
 AgentLogic::~AgentLogic()

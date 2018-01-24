@@ -14,11 +14,25 @@ void GameLogic::mainLoop()
 
 	while (playing)
 	{
-		InputController::instance().update();
+		while (true)
+		{
+			Visualization::instance().draw();
+			system("pause");
+			InputController::instance().update();
+			Visualization::instance().draw();
+			
+			if (!FieldLogic::instance().MoveNotFinished())
+			{
+				std::cerr << "koniec ruchu\n\n";
+				break;
+			}
+			
+		}
+		std::cerr << "agent\n";
 		//ui.update?
-		//agents->update();
+		agents->update();
+		
 		Visualization::instance().draw();
-		system("pause");
 	}
 }
 

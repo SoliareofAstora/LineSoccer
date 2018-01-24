@@ -4,15 +4,11 @@
 
 class RandomAgent
 {
-	sf::Color color;
+	
 public:
-	RandomAgent();
-	RandomAgent(sf::Color playercolor)
-	{
-		color = playercolor;
-	}
+	RandomAgent(){}
 	void getMove();
-	void Move();
+	void Move(sf::Color color);
 	~RandomAgent();
 };
 

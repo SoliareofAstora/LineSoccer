@@ -20,6 +20,7 @@ void InputController::update()
 	//	if (awaitingSpacebar)
 		{
 			FieldLogic::instance().reset();
+			Visualization::instance().resetField();
 			//awaitingSpacebar = false;
 		}
 	}
@@ -68,11 +69,11 @@ void InputController::update()
 			if (FieldLogic::instance().checkIfMoveIsPossible(3))
 				FieldLogic::instance().saveMove(3, tempcolor);
 		}
-		if (FieldLogic::instance().IsMoveFinished())
+		/*if (FieldLogic::instance().IsMoveFinished())
 		{
 			awaitingSpacebar = !awaitingSpacebar;
-			tempcolor = awaitingSpacebar ? sf::Color::Red : sf::Color::White;
-		}
+			tempcolor = awaitingSpacebar ? sf::Color::White : sf::Color::White;
+		}*/
 }
 
 InputController::InputController()

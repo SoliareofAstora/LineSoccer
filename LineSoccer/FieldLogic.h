@@ -29,12 +29,15 @@ public:
 	
 	void initialise(sf::Vector2i size);
 
+	bool checkIfMoveIsPossible(Move move, bool buul);
 	bool checkIfMoveIsPossible(Move move);
 	bool checkIfMoveIsPossible(int direction);
-
+	bool checkIfMoveIsPossible(int direction,bool buul);
+	bool checkIfAllLocked();
 	void saveMove(Move move, sf::Color PlayerColor);
 	void saveMove(int direction, sf::Color PlayerColor);
 
+	bool MoveNotFinished();
 	bool IsMoveFinished();
 	void logBallPosition(){ std::cerr << "\nBall position: " << BallPosition.x << " " << BallPosition.y << std::endl; }
 	~FieldLogic();
