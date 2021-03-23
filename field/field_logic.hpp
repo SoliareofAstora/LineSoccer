@@ -9,11 +9,10 @@
 #include <cstring>
 
 class FieldLogic {
+  BitSet *_links; // false-open true-closed
   int _x_dim, _y_dim;
   int _ball_x, _ball_y;
 public:
-  // TODO links should be private (I guess)
-  BitSet *_links; // false-open true-closed
   FieldLogic(int x_dim, int y_dim) {
     x_dim += x_dim % 2;
     if (x_dim < 10) {
@@ -31,6 +30,8 @@ public:
   }
 
   ~FieldLogic() { delete _links; }
+
+  BitSet *get_links() const { return _links; }
 
   void reset_field() {
     // clear field
@@ -51,7 +52,7 @@ public:
       _links->set_char(_x_dim / 2 * i + 1, 0x01);
 
     // fix bottom-left corner
-    _links->set_char(_x_dim / 2 * (_y_dim - 1) + 1, 0xCD);
+    _links->set_char(_x_dim / 2 * (_y_dim - 2) + 1, 0xCD);
 
     // left gate
     _links->set_char(_x_dim / 2 * (_y_dim / 2) + 1, 0x00);
@@ -59,6 +60,7 @@ public:
     _links->set_char(_x_dim / 2 * (_y_dim / 2 + 1) + 1, 0x00);
     _links->set_char(_x_dim / 2 * (_y_dim / 2 + 1), 0xDF);
     _links->set_char(_x_dim / 2 * (_y_dim / 2 - 1), 0xEF);
+
 
     // right gate
     _links->set_char(_x_dim / 2 * (_y_dim / 2) - 1, 0xF7);
@@ -72,7 +74,7 @@ public:
 
   bool check_link(int x, int y, int direction) {
     if (direction < 4)
-      return _links->get_bit((x * _x_dim + y) * 4 + direction);
+      return _links->get_bit((x + y * _x_dim) * 4 + direction);
     if (direction == 4)
       return check_link(x, y + 1, 0);
     if (direction == 5)
@@ -89,7 +91,7 @@ public:
 
   void set_link(int x, int y, int direction, bool value) {
     if (direction < 4)
-      _links->set_bit((x * _x_dim + y) * 4 + direction, value);
+      _links->set_bit((x + y * _x_dim) * 4 + direction, value);
     if (direction == 4)
       return set_link(x, y + 1, 0, value);
     if (direction == 5)
@@ -103,5 +105,23 @@ public:
   void close_link(int x, int y, int direction) {
     set_link(x, y, direction, true);
   }
+
+  void close_link( int direction) {
+    set_link(_ball_x, _ball_y, direction, true);
+  }
+
+  void print_links(){
+    for (int j = 0; j < _y_dim; ++j) {
+      for (int i = 0; i < _x_dim; ++i) {
+        auto tmp = std::bitset<4>();
+        for (int k = 0; k < 4; k++)
+          tmp[k] = _links->get_bit((i + j * _x_dim) * 4 + k);
+        printf("%*d",3,tmp.to_ulong());
+      }
+      std::cout << '\n';
+    }
+    std::cout << '\n';
+  }
+
 };
 #endif // LINESOCCER_FIELD_FIELD_LOGIC_HPP_
