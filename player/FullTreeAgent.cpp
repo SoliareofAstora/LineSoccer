@@ -1,19 +1,19 @@
 #include "FullTreeAgent.h"
-#include "logic/FieldLogic.h"
+#include "field/old_FieldLogic.h"
 #include "visualization/visualization.h"
 
 FullTreeAgent::FullTreeAgent() {
 }
 
 void FullTreeAgent::move(sf::Color color) {
-  node Root = node();
+  Node Root = Node();
   std::vector<int> out = Root.generate();
   std::cerr << "FINAL: ";
   for (int element : out) {
     std::cerr << element << " ";
   }
   for (int i = 1; i < out.size(); i++) {
-    FieldLogic::instance().saveMove(out[i], sf::Color::Red);
+    old_FieldLogic::instance().saveMove(out[i], sf::Color::Red);
   }
   //out.display();
 
@@ -33,13 +33,13 @@ void FullTreeAgent::move(sf::Color color) {
       destination = 2;
       //std::cerr <<"test "<< destination;
 
-      if (FieldLogic::instance().checkIfMoveIsPossible(destination))
+      if (old_FieldLogic::instance().checkIfMoveIsPossible(destination))
       {
           std::cerr << " " << destination;
-          FieldLogic::instance().saveMove(destination, color);
+          old_FieldLogic::instance().saveMove(destination, color);
           Visualization::instance().draw();
       }
-      if (!FieldLogic::instance().MoveNotFinished())
+      if (!old_FieldLogic::instance().MoveNotFinished())
       {
           std::cerr << "koniec ruchu\n\n";
           break;

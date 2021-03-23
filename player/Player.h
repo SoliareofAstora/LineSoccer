@@ -1,6 +1,6 @@
 #pragma once
 #include <cstdint>
-#include "logic/MapNode.h"
+#include "field/MapNode.h"
 
 
 class Player

@@ -20,13 +20,13 @@ void RandomAgent::Move(sf::Color color)
 		destination = rand()/(RAND_MAX/8);
 		//std::cerr <<"test "<< destination;
 		
-		if (FieldLogic::instance().checkIfMoveIsPossible(destination))
+		if (old_FieldLogic::instance().checkIfMoveIsPossible(destination))
 		{
 			std::cerr << " " << destination;
-			FieldLogic::instance().saveMove(destination, color);
+			old_FieldLogic::instance().saveMove(destination, color);
 			Visualization::instance().draw();
 		}
-		if (!FieldLogic::instance().MoveNotFinished())
+		if (!old_FieldLogic::instance().MoveNotFinished())
 		{
 			std::cerr << "koniec ruchu\n\n";
 			break;

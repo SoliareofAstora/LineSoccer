@@ -1,6 +1,6 @@
 #pragma once
 #include <SFML/System/Vector2.hpp>
-#include "FieldLogic.h"
+#include "field/old_FieldLogic.h"
 #include "player/AgentLogic.h"
 
 class GameLogic {
@@ -10,7 +10,9 @@ class GameLogic {
     static GameLogic logic;
     return logic;
   }
-  AgentLogic* agents;
+  AgentLogic* agents1;
+  AgentLogic* agents2;
+
 
   void stopPlaying() { playing = false; }
   GameLogic();
@@ -18,7 +20,7 @@ class GameLogic {
   void initialise();
   void update();
   sf::Vector2i* fieldSize() {
-    return &FieldLogic::instance().Size;
+    return &old_FieldLogic::instance().Size;
   }
   ~GameLogic();
 };

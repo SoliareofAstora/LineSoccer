@@ -10,8 +10,8 @@ add_library(LS_module
         player/AgentLogic.h
         visualization/Button.h
         utils/Debug.cpp
-        logic/FieldLogic.cpp
-        logic/FieldLogic.h
+        field/old_FieldLogic.cpp
+        field/old_FieldLogic.h
         visualization/FieldVisualization.cpp
         visualization/FieldVisualization.h
         player/FullTreeAgent.cpp
@@ -22,7 +22,7 @@ add_library(LS_module
         input_handler/InputController.h
         utils/LinkedList.cpp
         utils/LinkedList.h
-        logic/MapNode.h
+        field/MapNode.h
         logic/Move.h
         utils/node.h
         player/Player.h
@@ -34,7 +34,7 @@ add_library(LS_module
         input_handler/UI.h
         visualization/visualization.cpp
         visualization/visualization.h
-)
+        field/field_logic.hpp utils/bit_set.hpp)
 
 target_link_libraries(LS_module
         -lsfml-graphics

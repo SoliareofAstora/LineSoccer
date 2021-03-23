@@ -1,13 +1,13 @@
-#include "FieldLogic.h"
+#include "old_FieldLogic.h"
 #include "visualization/visualization.h"
-#include "GameLogic.h"
+#include "logic/GameLogic.h"
 #include <SFML/System/Sleep.hpp>
 #include <math.h>
 
-FieldLogic::FieldLogic():map(nullptr) {
+old_FieldLogic::old_FieldLogic():map(nullptr) {
 }
 
-void FieldLogic::initialise(sf::Vector2i size) {
+void old_FieldLogic::initialise(sf::Vector2i size) {
   //TODO kick to another function
   size.x += size.x % 2;
   if (size.x < 10) {
@@ -20,7 +20,7 @@ void FieldLogic::initialise(sf::Vector2i size) {
   Size = size;
 }
 
-bool FieldLogic::checkIfMoveIsPossible(Move move) {
+bool old_FieldLogic::checkIfMoveIsPossible(Move move) {
   sf::Vector2i dest = move.GetDestination();
   if (dest.y < 0) {
     return false;
@@ -36,11 +36,11 @@ bool FieldLogic::checkIfMoveIsPossible(Move move) {
   return GetNode(move)->checkOpen(move.direction);
 }
 
-bool FieldLogic::checkIfMoveIsPossible(int direction) {
+bool old_FieldLogic::checkIfMoveIsPossible(int direction) {
   return checkIfMoveIsPossible(Move(BallPosition, direction));
 }
 
-bool FieldLogic::vcheck(int direction) {
+bool old_FieldLogic::vcheck(int direction) {
   Move move = Move(vBallPosition, direction);
   sf::Vector2i dest = move.GetDestination();
   if (dest.y < 0) {
@@ -57,7 +57,7 @@ bool FieldLogic::vcheck(int direction) {
   return GetNode(move)->vcheckOpen(move.direction);
 }
 
-bool FieldLogic::checkIfAllLocked() {
+bool old_FieldLogic::checkIfAllLocked() {
   for (int i = 0; i < 8; i++) {
     if (checkIfMoveIsPossible(i)) {
       return false;
@@ -66,7 +66,7 @@ bool FieldLogic::checkIfAllLocked() {
   return true;
 }
 
-bool FieldLogic::vcheckIfAllLocked() {
+bool old_FieldLogic::vcheckIfAllLocked() {
   for (int i = 0; i < 8; i++) {
     if (vcheck(i)) {
       return false;
@@ -75,7 +75,7 @@ bool FieldLogic::vcheckIfAllLocked() {
   return true;
 }
 
-void FieldLogic::saveMove(Move move, sf::Color PlayerColor) {
+void old_FieldLogic::saveMove(Move move, sf::Color PlayerColor) {
   GetNode(move)->lockNode(move.direction);
   GetNode(BallPosition)->allowBounce();
   BallPosition = move.GetDestination();
@@ -84,22 +84,22 @@ void FieldLogic::saveMove(Move move, sf::Color PlayerColor) {
   logBallPosition();
 }
 
-void FieldLogic::saveMove(int direction, sf::Color PlayerColor) {
+void old_FieldLogic::saveMove(int direction, sf::Color PlayerColor) {
   saveMove(Move(BallPosition, direction), PlayerColor);
 }
 
-void FieldLogic::vsaveMove(int direction) {
+void old_FieldLogic::vsaveMove(int direction) {
   Move move = Move(vBallPosition, direction);
   GetNode(move)->vlockNode(move.direction);
   vBallPosition = move.GetDestination();
   logvBallPosition();
 }
 
-int FieldLogic::vdistance() {
+int old_FieldLogic::vdistance() {
   return (pow(vBallPosition.y - (Size.y / 2), 2) + pow(vBallPosition.x, 2));
 }
 
-bool FieldLogic::MoveNotFinished() {
+bool old_FieldLogic::MoveNotFinished() {
   if (checkIfAllLocked()) {
     Visualization::instance().resetField();
     reset();
@@ -110,7 +110,7 @@ bool FieldLogic::MoveNotFinished() {
   return temp;
 }
 
-bool FieldLogic::vMoveNotFinished() {
+bool old_FieldLogic::vMoveNotFinished() {
   /*if (vcheckIfAllLocked())
   {
       return true;
@@ -119,7 +119,7 @@ bool FieldLogic::vMoveNotFinished() {
   return temp;
 }
 
-bool FieldLogic::vunlock(int direction) {
+bool old_FieldLogic::vunlock(int direction) {
   if (direction > 7) {
     return false;
   }
@@ -131,7 +131,7 @@ bool FieldLogic::vunlock(int direction) {
   return true;
 }
 
-bool FieldLogic::vunlock(Move move) {
+bool old_FieldLogic::vunlock(Move move) {
 
   GetNode(move)->vunlockNode(move.direction);
   vBallPosition = move.GetSource();
@@ -139,7 +139,7 @@ bool FieldLogic::vunlock(Move move) {
   return true;
 }
 
-bool FieldLogic::IsMoveFinished() {
+bool old_FieldLogic::IsMoveFinished() {
   bool output = !GetNode(BallPosition)->bounce();
   if (!output) {
     //std::cerr << "bounce";
@@ -147,7 +147,7 @@ bool FieldLogic::IsMoveFinished() {
   return output;
 }
 
-FieldLogic::~FieldLogic() {
+old_FieldLogic::~old_FieldLogic() {
   if (map != nullptr) {
     for (int i = 0; i < Size.x; i++) {
       delete[] map[i];
@@ -156,7 +156,7 @@ FieldLogic::~FieldLogic() {
   }
 }
 
-void FieldLogic::Test() {
+void old_FieldLogic::Test() {
   for (int i = 0; i < Size.x; i++) {
     for (int j = 0; j < Size.y; j++) {
       for (uint8_t a = 0; a < 4; a++)
@@ -168,7 +168,7 @@ void FieldLogic::Test() {
   }
 }
 
-void FieldLogic::reset() {
+void old_FieldLogic::reset() {
   if (map != nullptr) {
     for (int i = 0; i < Size.x; i++) {
       delete[] map[i];

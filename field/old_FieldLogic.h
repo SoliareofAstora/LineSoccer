@@ -1,15 +1,15 @@
 #pragma once
 #include "MapNode.h"
 #include <SFML/System/Vector2.hpp>
-#include "Move.h"
+#include "logic/Move.h"
 #include <iostream>
 
 namespace sf{
 class Color;
 }
 
-class FieldLogic {
-  FieldLogic();
+class old_FieldLogic {
+  old_FieldLogic();
   MapNode** map;
 
   MapNode* GetNode(Move move) {
@@ -20,8 +20,8 @@ class FieldLogic {
   }
 
  public:
-  static FieldLogic &instance() {
-    static FieldLogic fieldlogic;
+  static old_FieldLogic &instance() {
+    static old_FieldLogic fieldlogic;
     return fieldlogic;
   }
   sf::Vector2i Size;
@@ -50,7 +50,7 @@ class FieldLogic {
     std::cerr << "\nvBall position: " << vBallPosition.x << " " << vBallPosition.y << std::endl;
   }
 
-  ~FieldLogic();
+  ~old_FieldLogic();
   void Test();
   void reset();
 };

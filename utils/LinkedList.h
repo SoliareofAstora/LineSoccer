@@ -2,8 +2,8 @@
 
 class LinkedList {
   struct node {
-    node* prev;                 // previous node
-    node* next;                 // next node
+    node* prev;                 // previous Node
+    node* next;                 // next Node
     int value;               // stored value
   };
   node head;         // Wska�nik do pierwszego w�z�a
