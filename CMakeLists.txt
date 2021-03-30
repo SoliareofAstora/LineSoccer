@@ -34,7 +34,7 @@ add_library(LS_module
         input_handler/UI.h
         visualization/visualization.cpp
         visualization/visualization.h
-        field/field_logic.hpp utils/bit_set.hpp)
+        field/field_logic.hpp utils/bit_set.hpp field/field_logic.cpp)
 
 target_link_libraries(LS_module
         -lsfml-graphics

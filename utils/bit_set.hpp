@@ -6,7 +6,7 @@
 #define LINESOCCER__BIT_SET_HPP_
 
 struct BitSet {
-  char *data;
+  unsigned char *data;
   unsigned int size;
 
   BitSet(unsigned int N) {
@@ -14,21 +14,27 @@ struct BitSet {
     if (N % 8 > 0) {
       size += 1;
     }
-    data = new char[size];
+    data = new unsigned char[size];
   }
 
-  ~BitSet() { delete[] data; }
+  ~BitSet() {
+    delete[] data;
+  }
 
-  void set_bit(unsigned int i, bool value) {
+  void set_bit(unsigned int i, bool value) const {
     if (value)
       data[i / 8] |= true << (i % 8);
     else
       data[i / 8] &= ~(true << (i % 8));
   }
 
-  bool get_bit(unsigned int i) { return (data[i / 8] >> (i % 8)) & true; }
+  bool get_bit(unsigned int i) const {
+    return (data[i / 8] >> (i % 8)) & true;
+  }
 
-  void set_char(unsigned int i, char value) { data[i] = value; }
+  void set_char(unsigned int i, unsigned char value) const {
+    data[i] = value;
+  }
 };
 
-#endif // LINESOCCER__BIT_SET_HPP_
+#endif  // LINESOCCER__BIT_SET_HPP_
