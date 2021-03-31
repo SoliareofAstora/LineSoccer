@@ -1,16 +1,15 @@
-#include "logic/GameLogic.h"
+//
+// Created by soliareofastora on 20.03.2021.
+//
+
+#include <iostream>
 
 #include "field/field_logic.hpp"
-#include <bitset>
-#include <iostream>
+#include "logic/GameLogic.h"
 int main() {
-
   auto fl = FieldLogic(40, 26);
-//  fl.print_links();
-  std::cout<<(int)fl.get_open_links_count();
-  fl.close_link(0);
-  std::cout<< (int)fl.get_open_links_count();
-//  fl.print_links();
+  fl.reset();
+  fl.print_links();
 
   // GameLogic::instance().mainLoop();
   return 0;

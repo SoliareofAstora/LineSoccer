@@ -5,31 +5,33 @@
 #ifndef LINESOCCER_FIELD_FIELD_LOGIC_HPP_
 #define LINESOCCER_FIELD_FIELD_LOGIC_HPP_
 
+#include <tuple>
+
 #include "utils/bit_set.hpp"
 
 class FieldLogic {
   BitSet* _links;  // false-open true-closed
-  unsigned short _x_dim, _y_dim;
-  unsigned short _ball_x, _ball_y;
+  int _x_dim, _y_dim;
+  int _ball_x, _ball_y;
 
  public:
-  FieldLogic(unsigned short x_dim, unsigned short y_dim);
+  FieldLogic(int x_dim, int y_dim);
   ~FieldLogic();
-  BitSet* get_links() const;
-  void reset_field();
+  void reset();
 
-  bool is_link_open(unsigned short x, unsigned short y, unsigned char direction);
+ private:
+  std::pair<int, int> _next_xy(int x, int y, unsigned char direction);
+  bool _is_link_open(int x, int y, unsigned char direction);
+  unsigned char _get_open_links_directions(int x, int y, unsigned char* output);
+  unsigned char _get_open_links_count(int x, int y);
+  void _set_link(int x, int y, unsigned char direction, bool value);
+  void _close_link(int x, int y, unsigned char direction);
+
+ public:
   bool is_link_open(unsigned char direction);
-
-  unsigned char get_open_links_directions(unsigned short x, unsigned short y, unsigned char* output);
   unsigned char get_open_links_directions(unsigned char* output);
-  unsigned char get_open_links_count(unsigned short x, unsigned short y);
   unsigned char get_open_links_count();
-
-  void set_link(unsigned short x, unsigned short y, unsigned char direction, bool value);
-  void close_link(unsigned short x, unsigned short y, unsigned char direction);
-  void close_link(unsigned char direction);
-
+  bool move(unsigned char direction);
   void print_links();
 };
 
