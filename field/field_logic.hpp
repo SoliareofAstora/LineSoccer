@@ -19,13 +19,14 @@ class FieldLogic {
   ~FieldLogic();
   void reset();
 
- private:
+ public:
   std::pair<int, int> _next_xy(int x, int y, unsigned char direction);
   bool _is_link_open(int x, int y, unsigned char direction);
-  unsigned char _get_open_links_directions(int x, int y, unsigned char* output);
-  unsigned char _get_open_links_count(int x, int y);
   void _set_link(int x, int y, unsigned char direction, bool value);
   void _close_link(int x, int y, unsigned char direction);
+  void _close_link(unsigned char direction);
+  unsigned char _get_open_links_directions(int x, int y, unsigned char* output);
+  unsigned char _get_open_links_count(int x, int y);
 
  public:
   bool is_link_open(unsigned char direction);

@@ -34,33 +34,30 @@ void FieldLogic::reset() {
   std::memset(_links->data, 0x00, _x_dim * _y_dim / 2);
 
   // set rows
-  std::memset(_links->data, 0xFF, _x_dim / 2);
-  std::memset(&_links->data[_x_dim / 2], 0x77, _x_dim / 2);
-  std::memset(&_links->data[_x_dim / 2 * (_y_dim - 2)], 0xCC, _x_dim / 2);
-  std::memset(&_links->data[_x_dim / 2 * (_y_dim - 1)], 0xFF, _x_dim / 2);
+  std::memset(_links->data, 0x77, _x_dim / 2);
+  std::memset(&_links->data[_x_dim / 2 * (_y_dim - 1)], 0xCC, _x_dim / 2);
 
   // set columns
-  for (unsigned int i = 2; i < _y_dim - 2; ++i)
-    _links->set_char(_x_dim / 2 * i + 1, 0x01);
-  for (unsigned int i = 0; i < _y_dim; ++i) {
-    _links->set_char(_x_dim / 2 * i, 0xFF);
-    _links->set_char(_x_dim / 2 * (i + 1) - 1, 0xFF);
+  for (unsigned int i = 1; i < _y_dim - 1; ++i) {
+    _links->set_char(_x_dim / 2 * i, 0x1F);
+    _links->set_char(_x_dim / 2 * (i + 1) - 1, 0xF0);
   }
 
-  // set bottom-left corner
-  _links->set_char(_x_dim / 2 * (_y_dim - 2) + 1, 0xCD);
+  // set corners
+  _links->set_char(0, 0x7F);
+  _links->set_char(_x_dim / 2 - 1, 0xF7);
+  _links->set_char(_x_dim / 2 * (_y_dim - 1), 0xDF);
+  _links->set_char(_x_dim / 2 * (_y_dim)-1, 0xFC);
 
   // left gate
-  _links->set_char(_x_dim / 2 * (_y_dim / 2) + 1, 0x00);
-  _links->set_char(_x_dim / 2 * (_y_dim / 2), 0x1F);
-  _links->set_char(_x_dim / 2 * (_y_dim / 2 + 1) + 1, 0x00);
-  _links->set_char(_x_dim / 2 * (_y_dim / 2 + 1), 0xDF);
-  _links->set_char(_x_dim / 2 * (_y_dim / 2 - 1), 0xEF);
+  _links->set_char(_x_dim / 2 * (_y_dim / 2 - 1), 0x17);
+  _links->set_char(_x_dim / 2 * (_y_dim / 2), 0x01);
+  _links->set_char(_x_dim / 2 * (_y_dim / 2 + 1), 0x0D);
 
   // right gate
-  _links->set_char(_x_dim / 2 * (_y_dim / 2) - 1, 0xF7);
-  _links->set_char(_x_dim / 2 * (_y_dim / 2 + 1) - 1, 0xF0);
-  _links->set_char(_x_dim / 2 * (_y_dim / 2 + 2) - 1, 0xFB);
+  _links->set_char(_x_dim / 2 * (_y_dim / 2) - 1, 0x70);
+  _links->set_char(_x_dim / 2 * (_y_dim / 2 + 1) - 1, 0x00);
+  _links->set_char(_x_dim / 2 * (_y_dim / 2 + 2) - 1, 0x80);
 
   // set ball position
   _ball_x = _x_dim / 2;
@@ -89,14 +86,34 @@ std::pair<int, int> FieldLogic::_next_xy(int x, int y, unsigned char direction) 
 
 bool FieldLogic::_is_link_open(int x, int y, unsigned char direction) {
   if (direction < 4) {
-    //    if (x < 0 or y < 0 or x >= _x_dim or y >= _y_dim)
-    //      return false;
+    if (x < 0 or y < 0 or x >= _x_dim or y >= _y_dim)
+      return false;
     return !_links->get_bit((x + y * _x_dim) * 4 + direction);
   } else {
     int new_x, new_y;
     std::tie(new_x, new_y) = _next_xy(x, y, direction);
     return _is_link_open(new_x, new_y, direction - 4);
   }
+}
+
+void FieldLogic::_set_link(int x, int y, unsigned char direction, bool value) {
+  if (direction < 4) {
+    if (x < 0 or y < 0 or x >= _x_dim or y >= _y_dim)
+      throw std::runtime_error("Trying to set link outsize of the field");
+    return _links->set_bit((x + y * _x_dim) * 4 + direction, value);
+  } else {
+    int new_x, new_y;
+    std::tie(new_x, new_y) = _next_xy(x, y, direction);
+    _set_link(new_x, new_y, direction - 4, value);
+  }
+}
+
+void FieldLogic::_close_link(int x, int y, unsigned char direction) {
+  _set_link(x, y, direction, true);
+}
+
+void FieldLogic::_close_link(unsigned char direction) {
+  _set_link(_ball_x, _ball_y, direction, true);
 }
 
 unsigned char FieldLogic::_get_open_links_directions(int x, int y, unsigned char* output) {
@@ -117,22 +134,6 @@ unsigned char FieldLogic::_get_open_links_count(int x, int y) {
     }
   }
   return length;
-}
-
-void FieldLogic::_set_link(int x, int y, unsigned char direction, bool value) {
-  if (direction < 4) {
-    //    if (x < 0 or y < 0 or x >= _x_dim or y >= _y_dim)
-    //      throw std::runtime_error("Trying to set link outsize of the field");
-    return _links->set_bit((x + y * _x_dim) * 4 + direction, value);
-  } else {
-    int new_x, new_y;
-    std::tie(new_x, new_y) = _next_xy(x, y, direction);
-    _is_link_open(new_x, new_y, direction - 4);
-  }
-}
-
-void FieldLogic::_close_link(int x, int y, unsigned char direction) {
-  _set_link(x, y, direction, true);
 }
 
 bool FieldLogic::is_link_open(unsigned char direction) {
@@ -157,14 +158,28 @@ void FieldLogic::print_links() {
     }
     std::cout << '\n';
   }
-  std::cout << '\n';
+  std::cout << "x:" << _ball_x <<" y: "<<_ball_y <<'\n';
 }
 
 bool FieldLogic::move(unsigned char direction) {
   if (!is_link_open(direction))
     throw std::runtime_error("Someone is cheating");
+
   int new_x, new_y;
   std::tie(new_x, new_y) = _next_xy(_ball_x, _ball_y, direction);
   auto open_links = _get_open_links_count(new_x, new_y);
-  return false;
+  bool move_finished = false;
+  if (open_links == 0 or open_links == 8) {
+    move_finished = true;
+  } else {
+    if (new_x == 0 or new_x == _x_dim) {
+      move_finished = true;
+    }
+  }
+
+  _close_link(direction);
+  _ball_x = new_x;
+  _ball_y = new_y;
+
+  return move_finished;
 }
