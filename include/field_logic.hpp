@@ -7,7 +7,7 @@
 
 #include <tuple>
 
-#include "utils/bit_set.hpp"
+#include "bit_set.hpp"
 
 class FieldLogic {
   BitSet* _links;  // false-open true-closed
@@ -19,8 +19,8 @@ class FieldLogic {
   ~FieldLogic();
   void reset();
 
- public:
-  std::pair<int, int> _next_xy(int x, int y, unsigned char direction);
+ private:
+  static std::pair<int, int> _linked_xy(int x, int y, unsigned char direction);
   bool _is_link_open(int x, int y, unsigned char direction);
   void _set_link(int x, int y, unsigned char direction, bool value);
   void _close_link(int x, int y, unsigned char direction);

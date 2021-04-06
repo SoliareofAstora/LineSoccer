@@ -1,10 +1,4 @@
 __pycache__/
-tmp/
 cmake-build-debug/
 .idea/
-local/
-experiments/done
-experiments/in_progress
-experiments/queue
-experiments/templates
-experiments/archives
+excluded/

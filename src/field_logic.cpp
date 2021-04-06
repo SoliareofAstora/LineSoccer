@@ -64,7 +64,7 @@ void FieldLogic::reset() {
   _ball_y = _y_dim / 2;
 }
 
-std::pair<int, int> FieldLogic::_next_xy(int x, int y, unsigned char direction) {
+std::pair<int, int> FieldLogic::_linked_xy(int x, int y, unsigned char direction) {
   if (direction == 0)
     return {x, y - 1};
   if (direction == 1)
@@ -91,7 +91,7 @@ bool FieldLogic::_is_link_open(int x, int y, unsigned char direction) {
     return !_links->get_bit((x + y * _x_dim) * 4 + direction);
   } else {
     int new_x, new_y;
-    std::tie(new_x, new_y) = _next_xy(x, y, direction);
+    std::tie(new_x, new_y) = _linked_xy(x, y, direction);
     return _is_link_open(new_x, new_y, direction - 4);
   }
 }
@@ -103,7 +103,7 @@ void FieldLogic::_set_link(int x, int y, unsigned char direction, bool value) {
     return _links->set_bit((x + y * _x_dim) * 4 + direction, value);
   } else {
     int new_x, new_y;
-    std::tie(new_x, new_y) = _next_xy(x, y, direction);
+    std::tie(new_x, new_y) = _linked_xy(x, y, direction);
     _set_link(new_x, new_y, direction - 4, value);
   }
 }
@@ -158,24 +158,20 @@ void FieldLogic::print_links() {
     }
     std::cout << '\n';
   }
-  std::cout << "x:" << _ball_x <<" y: "<<_ball_y <<'\n';
+  std::cout << "x:" << _ball_x << " y: " << _ball_y << '\n';
 }
 
 bool FieldLogic::move(unsigned char direction) {
   if (!is_link_open(direction))
-    throw std::runtime_error("Someone is cheating");
+    throw std::runtime_error("Trying to move over closed link");
 
   int new_x, new_y;
-  std::tie(new_x, new_y) = _next_xy(_ball_x, _ball_y, direction);
+  std::tie(new_x, new_y) = _linked_xy(_ball_x, _ball_y, direction);
   auto open_links = _get_open_links_count(new_x, new_y);
+
   bool move_finished = false;
-  if (open_links == 0 or open_links == 8) {
+  if (open_links == 0 or open_links == 8 or new_x == 0 or new_x == _x_dim)
     move_finished = true;
-  } else {
-    if (new_x == 0 or new_x == _x_dim) {
-      move_finished = true;
-    }
-  }
 
   _close_link(direction);
   _ball_x = new_x;
