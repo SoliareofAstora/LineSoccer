@@ -2,7 +2,7 @@
 // Created by soliareofastora on 20.03.2021.
 //
 
-#include "field_logic.hpp"
+#include "field_logic.h"
 
 int main() {
   auto fl = FieldLogic(2, 2);

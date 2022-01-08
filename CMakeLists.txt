@@ -6,18 +6,15 @@ project(${PROJECT_NAME})
 set(CMAKE_CXX_STANDARD 17)
 
 file(GLOB source_files
-        "src/*.cpp"
-        "src/*/*.cpp"
+        "src/**.cpp"
+        "include/**.h"
         )
 
 set(SOURCES ${source_files})
 
-
-
-# Detect and add SFML
 find_package(SFML 2 REQUIRED COMPONENTS audio graphics window system)
 
-add_executable(${PROJECT_NAME} main.cpp ${SOURCES})
+add_executable(${PROJECT_NAME} ${SOURCES})
 
 target_include_directories(${PROJECT_NAME} PRIVATE "include" "lib")
 

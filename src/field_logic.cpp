@@ -2,7 +2,7 @@
 // Created by soliareofastora on 30.03.2021.
 //
 
-#include "field_logic.hpp"
+#include "field_logic.h"
 
 #include <bitset>
 #include <cstring>
@@ -106,6 +106,9 @@ void FieldLogic::_set_link(int x, int y, unsigned char direction, bool value) {
     std::tie(new_x, new_y) = _linked_xy(x, y, direction);
     _set_link(new_x, new_y, direction - 4, value);
   }
+  if(_visualizer){
+
+  }
 }
 
 void FieldLogic::_close_link(int x, int y, unsigned char direction) {
@@ -178,4 +181,8 @@ bool FieldLogic::move(unsigned char direction) {
   _ball_y = new_y;
 
   return move_finished;
+}
+
+void FieldLogic::attach_visualizer(FieldVisualizer* visualizer) {
+  _visualizer = visualizer;
 }

@@ -2,17 +2,20 @@
 // Created by soliareofastora on 20.03.2021.
 //
 
-#ifndef LINESOCCER_FIELD_FIELD_LOGIC_HPP_
-#define LINESOCCER_FIELD_FIELD_LOGIC_HPP_
+#ifndef LINESOCCER_FIELD_FIELD_LOGIC_H_
+#define LINESOCCER_FIELD_FIELD_LOGIC_H_
 
 #include <tuple>
 
-#include "bit_set.hpp"
+#include "bit_set.h"
+#include "field_visualizer.h"
 
 class FieldLogic {
   BitSet* _links;  // false-open true-closed
   int _x_dim, _y_dim;
   int _ball_x, _ball_y;
+
+  FieldVisualizer* _visualizer = nullptr;
 
  public:
   FieldLogic(int x_dim, int y_dim);
@@ -34,6 +37,7 @@ class FieldLogic {
   unsigned char get_open_links_count();
   bool move(unsigned char direction);
   void print_links();
+  void attach_visualizer(FieldVisualizer* visualizer);
 };
 
-#endif  // LINESOCCER_FIELD_FIELD_LOGIC_HPP_
+#endif  // LINESOCCER_FIELD_FIELD_LOGIC_H_
